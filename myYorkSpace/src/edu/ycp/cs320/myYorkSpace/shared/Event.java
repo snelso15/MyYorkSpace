@@ -7,9 +7,9 @@ public class Event {
 	private String eventName;
 	private String eventDesc;
 	private String eventTime;
-	private ArrayList<Account> invited;
+	private ArrayList<String> invited;
 	
-	public Event(String eventName, String eventDesc, String eventTime, ArrayList<Account> invited)
+	public Event(String eventName, String eventDesc, String eventTime, ArrayList<String> invited)
 	{
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
@@ -47,12 +47,12 @@ public class Event {
 		return this.eventTime;
 	}
 	
-	public void setInvited(ArrayList<Account> invited)
+	public void setInvited(ArrayList<String> invited)
 	{
 		this.invited = invited;
 	}
 	
-	public ArrayList<Account> getInvited()
+	public ArrayList<String> getInvited()
 	{
 		return this.invited;
 	}
