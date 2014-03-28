@@ -10,7 +10,7 @@ public class Account {
 	private String major;
 	private ArrayList<Account> friends;
 	//constructor
-	public Account(String userName, String email, String birthDate, String password, String major, ArrayList<Account> friends) {
+	public Account(String userName, String email, String password, String birthDate, String major, ArrayList<Account> friends) {
 		this.userName = userName;
 		this.email = email;
 		this.birthDate = birthDate;
@@ -56,16 +56,17 @@ public class Account {
 		this.friends = friends;
 	}
 	//methods
-	public void logIn(String email, String password){
-		
+	public boolean logIn(String email, String password){
+		if(this.password==password && this.email==email)return true;
+		else return false;
 	}
-	public boolean verifyUser(Account user){
-		if(validEmail(user.getEmail())&&validPassword(user.getPassword())) return true;
+	public boolean verifyUser(){
+		if(validEmail(this.email)&&validPassword(this.password)) return true;
 		else return false;
 	}
 	public boolean validEmail(String email){
 		boolean valid = false;
-		if(	email.contains("@")&&(email.contains(".edu"))) valid=true;
+		if(email.contains("@")&&(email.contains(".edu"))) valid=true;
 		return valid;
 	}
 	public boolean validPassword(String password){
@@ -74,13 +75,8 @@ public class Account {
 		//password must be sequence of numbers between 0-9 or capitol/lower case letters.
 		boolean valid = true;
 		for(int i = 0; i<password.length()-1; i++){
-			if(!(password.charAt(i) >= 47 && password.charAt(i) <= 57)) valid=false;
-			if(!(password.charAt(i) >= 65 && password.charAt(i) <= 90)) valid=false;
-			if(!(password.charAt(i) >= 97 && password.charAt(i) <= 122)) valid=false;
+			if(!(password.charAt(i) >= '0' && password.charAt(i) <= '9')&&!(password.charAt(i) >= 'a' && password.charAt(i) <= 'z')&& !(password.charAt(i) >= 'A' && password.charAt(i) <= 'Z')) valid=false;
 		}
 		return valid; 
 	}
-	
-	
-
 }
