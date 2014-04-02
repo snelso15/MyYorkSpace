@@ -1,14 +1,20 @@
 package edu.ycp.cs320.myYorkSpace.shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements Serializable {
 	private String userName;
 	private String email;
 	private String birthDate;
 	private String password;
 	private String major;
 	private ArrayList<Account> friends;
+	
+	// Default constructor
+	public Account() {
+	}
+	
 	//constructor
 	public Account(String userName, String email, String password, String birthDate, String major, ArrayList<Account> friends) {
 		this.userName = userName;
@@ -18,6 +24,7 @@ public class Account {
 		this.major = major;
 		this.friends = friends;
 	}
+
 	//getters/setters
 	public String getUserName() {
 		return userName;

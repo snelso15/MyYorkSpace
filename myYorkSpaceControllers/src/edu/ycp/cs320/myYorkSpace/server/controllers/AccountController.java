@@ -1,4 +1,6 @@
-package edu.ycp.cs320.myYorkSpace.shared;
+package edu.ycp.cs320.myYorkSpace.server.controllers;
+
+import edu.ycp.cs320.myYorkSpace.shared.Account;
 
 public class AccountController {
 	public boolean logIn(String email, String password){

@@ -10,11 +10,24 @@
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.myYorkSpace.server.GreetingServiceImpl</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoginServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.cs320.myYorkSpace.server.LoginServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/myyorkspacewebapp/greet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServiceImpl</servlet-name>
+    <url-pattern>/myyorkspacewebapp/login</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Servlet context listeners -->
+  <listener>
+    <listener-class>edu.ycp.cs320.myYorkSpace.server.DatabaseInitListener</listener-class>
+  </listener>
   
   <!-- Default page to serve -->
   <welcome-file-list>
