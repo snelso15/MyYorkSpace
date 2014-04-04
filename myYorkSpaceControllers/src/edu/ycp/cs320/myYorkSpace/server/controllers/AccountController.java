@@ -25,5 +25,7 @@ public class AccountController {
 			if(!(password.charAt(i) >= '0' && password.charAt(i) <= '9')&&!(password.charAt(i) >= 'a' && password.charAt(i) <= 'z')&& !(password.charAt(i) >= 'A' && password.charAt(i) <= 'Z')) valid=false;
 		}
 		return valid; 
+	public boolean exists(String email){
+		if ()
 	}
 }
