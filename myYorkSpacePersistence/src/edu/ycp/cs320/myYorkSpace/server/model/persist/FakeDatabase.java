@@ -3,15 +3,18 @@ package edu.ycp.cs320.myYorkSpace.server.model.persist;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ycp.cs320.booksdb.model.Author;
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
+import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class FakeDatabase implements IDatabase {
 	private List<Account> accountList;
+	private List<Post> postList;
 	
 	public FakeDatabase() {
-		accountList = new ArrayList<Account>();
+
 		Account account= new Account();
 		account.setEmail("sam@ycp.edu");
 		Birthday birthday = new Birthday(5, 7, 1994);
@@ -20,6 +23,7 @@ public class FakeDatabase implements IDatabase {
 		account.setPassword("123abc");
 		account.setUserName("Sam");
 		
+		accountList = new ArrayList<Account>();
 		accountList.add(account);
 
 		account.setEmail("alec@ycp.edu");
@@ -68,6 +72,7 @@ public class FakeDatabase implements IDatabase {
 	}
 	
 	public Account findUserByEmail(String email) {
+		
 		for (Account acct : accountList) {
 			if (acct.getEmail().equals(email)) {
 				return acct;

@@ -11,6 +11,10 @@ public class SiteController {
 	public Account logIn(String email, String password){
 		return DatabaseProvider.getInstance().logIn(email, password);
 	}
+	public void addUser(Account account) {
+		DatabaseProvider.getInstance().addUser(account);
+	}
+	
 //	public Account logIn(String email, String password, Site site){
 //		Account userLoggingIn = findUserByEmail(email, site);
 //		if(userLoggingIn.getPassword() == password){
