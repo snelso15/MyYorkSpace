@@ -32,3 +32,8 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+/* For PromptedTextBox */
+.prompt {
+    color: #999;
+}

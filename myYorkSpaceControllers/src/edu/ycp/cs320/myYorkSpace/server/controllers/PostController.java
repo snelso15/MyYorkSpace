@@ -10,11 +10,13 @@ public class PostController {
 	public void createPost(String postUser, String postText, Attachment postAttach)
 	{
 		Post p = new Post(postUser, postText, postAttach);
-		DatabaseProvider.getInstance().createPost(p);
+		// FIXME
+		//DatabaseProvider.getInstance().createPost(p);
 	}
 	
 	public ArrayList<Post> getPost(String postUser)
 	{
-		return DatabaseProvider.getInstance().getPosts(postUser);
+		// FIXME
+		return null; //DatabaseProvider.getInstance().getPosts(postUser);
 	}
 }

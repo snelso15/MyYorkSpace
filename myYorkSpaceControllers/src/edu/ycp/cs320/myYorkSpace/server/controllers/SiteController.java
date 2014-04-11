@@ -11,25 +11,29 @@ public class SiteController {
 	public Account logIn(String email, String password){
 		return DatabaseProvider.getInstance().logIn(email, password);
 	}
-	public void addUser(Account account) {
+	
+	public Account addUser(Account account) {
 		if(verifyUser(account)){
 			DatabaseProvider.getInstance().addUser(account);
+			return account;
 		}
 		else{
 			System.out.print("not a valid account");
+			return null;
 		}
 	}
-	
 	
 	public boolean verifyUser(Account user){
 		if(validEmail(user.getEmail())&&validPassword(user.getPassword())) return true;
 		else return false;
 	}
+	
 	public boolean validEmail(String email){
 		boolean valid = false;
 		if(email.contains("@")&&(email.contains(".edu"))) valid=true;
 		return valid;
 	}
+	
 	public boolean validPassword(String password){
 		//password must be at least 5 characters long
 		if(password.length()<5)return false;
@@ -40,5 +44,6 @@ public class SiteController {
 		}
 		return valid; 
 	}
+	
 
 }
