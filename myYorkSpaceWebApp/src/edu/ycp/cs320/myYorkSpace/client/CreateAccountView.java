@@ -1,7 +1,5 @@
 package edu.ycp.cs320.myYorkSpace.client;
 
-import java.util.ArrayList;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -30,7 +28,7 @@ public class CreateAccountView extends Composite {
 		
 		this.userNameTextBox = new TextBox();
 		this.userNameTextBox.setWidth("110px");
-		//this.userNameTextBox.setTitle(title);
+		this.userNameTextBox.setTitle("Enter user name here");
 		panel.add(userNameTextBox);
 		panel.setWidgetLeftWidth(userNameTextBox, 20.0, Unit.PX, 120.0, Unit.PX);
 		panel.setWidgetTopHeight(userNameTextBox, 100.0, Unit.PX, 32.0, Unit.PX);
@@ -41,19 +39,19 @@ public class CreateAccountView extends Composite {
 		panel.setWidgetLeftWidth(passwordTextBox, 20.0, Unit.PX, 120.0, Unit.PX);
 		panel.setWidgetTopHeight(passwordTextBox, 140.0, Unit.PX, 32.0, Unit.PX);
 
-		this.emailTextBox = new PasswordTextBox();
+		this.emailTextBox = new TextBox();
 		panel.add(emailTextBox);
 		this.emailTextBox.setWidth("110px");
 		panel.setWidgetLeftWidth(emailTextBox, 20.0, Unit.PX, 120.0, Unit.PX);
 		panel.setWidgetTopHeight(emailTextBox, 180.0, Unit.PX, 32.0, Unit.PX);
 
-		this.birthdayTextBox = new PasswordTextBox();
+		this.birthdayTextBox = new TextBox();
 		panel.add(birthdayTextBox);
 		this.birthdayTextBox.setWidth("110px");
 		panel.setWidgetLeftWidth(birthdayTextBox, 20.0, Unit.PX, 120.0, Unit.PX);
 		panel.setWidgetTopHeight(birthdayTextBox, 220.0, Unit.PX, 32.0, Unit.PX);
 		
-		this.majorTextBox = new PasswordTextBox();
+		this.majorTextBox = new TextBox();
 		panel.add(majorTextBox);
 		this.majorTextBox.setWidth("110px");
 		panel.setWidgetLeftWidth(majorTextBox, 20.0, Unit.PX, 120.0, Unit.PX);
@@ -79,6 +77,7 @@ public class CreateAccountView extends Composite {
 		String email = emailTextBox.getText();
 		String birthday = birthdayTextBox.getText();
 		String major = majorTextBox.getText();
+		
 
 		
 		
@@ -88,18 +87,17 @@ public class CreateAccountView extends Composite {
 			@Override
 			public void onSuccess(Account result) {
 				if (result == null) {
-					// Unknown username/password
+					// bad data
 					GWT.log("Failed.  Reenter valid data");
 				} else {
-					// Successful login!
+					// Successful 
 					GWT.log("Add User Successful!");
 				}
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO: display error msg
-				GWT.log("Login RPC call failed", caught);
+				GWT.log("RPC call failed", caught);
 			}
 		});
 	}
