@@ -8,4 +8,5 @@ public interface LoginServiceAsync {
 
 	void logIn(String email, String password, AsyncCallback<Account> callback);
 
+
 }
