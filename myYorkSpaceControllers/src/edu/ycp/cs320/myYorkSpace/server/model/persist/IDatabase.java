@@ -1,6 +1,7 @@
 package edu.ycp.cs320.myYorkSpace.server.model.persist;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public interface IDatabase {
 	public Account logIn(String email, String password);
