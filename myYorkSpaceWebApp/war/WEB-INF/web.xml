@@ -14,6 +14,10 @@
     <servlet-name>LoginServiceImpl</servlet-name>
     <servlet-class>edu.ycp.cs320.myYorkSpace.server.LoginServiceImpl</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddUserServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.cs320.myYorkSpace.server.AddUserServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
@@ -22,6 +26,10 @@
   <servlet-mapping>
     <servlet-name>LoginServiceImpl</servlet-name>
     <url-pattern>/myyorkspacewebapp/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddUserServiceImpl</servlet-name>
+    <url-pattern>/myyorkspacewebapp/AddUser</url-pattern>
   </servlet-mapping>
   
   <!-- Servlet context listeners -->
