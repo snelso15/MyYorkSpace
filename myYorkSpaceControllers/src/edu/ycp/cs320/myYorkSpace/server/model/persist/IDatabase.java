@@ -1,6 +1,9 @@
 package edu.ycp.cs320.myYorkSpace.server.model.persist;
 
+import java.util.ArrayList;
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public interface IDatabase {
@@ -8,5 +11,9 @@ public interface IDatabase {
 	public void addUser(Account userToAdd);
 	public Account findUserByUserName(String name);
 	public Account findUserByEmail(String email);
+	public void createMessage(Message messToAdd);
+	public ArrayList<Message> getMessage(String user);
+	public void createPost(Post postToAdd);
+	public ArrayList<Post> getPosts(String postUser);
 }
 

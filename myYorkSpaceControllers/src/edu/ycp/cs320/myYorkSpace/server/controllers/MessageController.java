@@ -9,13 +9,13 @@ public class MessageController {
 	public void createMessage(String fromUser, String toUser, String messText)
 	{
 		Message m = new Message(fromUser, toUser, messText);
-		// FIXME
-		//DatabaseProvider.getInstance().createMessage(m);
+		
+		DatabaseProvider.getInstance().createMessage(m);
 	}
 	
 	public ArrayList<Message> getMessage(String user)
 	{
-		// FIXME
-		return null; //  DatabaseProvider.getInstance().getMessage(user);
+		
+		return DatabaseProvider.getInstance().getMessage(user);
 	}
 }
