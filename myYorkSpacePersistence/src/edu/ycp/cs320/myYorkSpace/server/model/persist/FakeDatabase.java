@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
+import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class FakeDatabase implements IDatabase {
 	private List<Account> accountList;
 	private List<Post> postList;
+	private List<Message> messageList;
 	
 	public FakeDatabase() {
 
@@ -80,5 +84,36 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 	
-
+	public void createPost(Post postToAdd) {
+		postList.add(postToAdd);
+		
+	}
+	
+	public ArrayList<Post> getPosts(String postUser) {
+		ArrayList<Post> foundPosts = new ArrayList<Post>();
+		for(Post post : postList)
+		{
+			if(post.getPostUser().equals(postUser))
+			{
+				foundPosts.add(post);
+			}
+		}
+		return foundPosts;
+	}
+	public void createMessage(Message messToAdd) {
+		messageList.add(messToAdd);
+		
+	}
+	
+	public ArrayList<Message> getMessage(String user) {
+		ArrayList<Message> foundMess = new ArrayList<Message>();
+		for(Message mess : messageList)
+		{
+			if(mess.getToUser().equals(user))
+			{
+				foundMess.add(mess);
+			}
+		}
+		return foundMess;
+	}
 }
