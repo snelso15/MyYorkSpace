@@ -9,6 +9,7 @@ import java.util.List;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
+import edu.ycp.cs320.myYorkSpace.shared.Event;
 import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
@@ -16,6 +17,7 @@ public class FakeDatabase implements IDatabase {
 	private List<Account> accountList;
 	private List<Post> postList;
 	private List<Message> messageList;
+	private List<Event> eventList;
 	
 	public FakeDatabase() {
 
@@ -47,6 +49,9 @@ public class FakeDatabase implements IDatabase {
 		account.setUserName("Prof");
 		
 		accountList.add(account);
+		
+		eventList = new ArrayList<Event>();
+		// TODO: populate
 	}
 	public void addUser(Account userToAdd){
 			accountList.add(userToAdd);
