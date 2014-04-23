@@ -12,8 +12,8 @@ public class AddUserServiceImpl extends RemoteServiceServlet implements AddUserS
 	public Account AddUser(Account account) {
 		System.out.println("create account attempt attempt: email=" + account.getEmail() + ", password=" + account.getPassword() + "Birthday=" + account.getBirthDate());
 		SiteController controller = new SiteController();
-		
+
 		return controller.addUser(account);
 	}
-
 }
+ 
