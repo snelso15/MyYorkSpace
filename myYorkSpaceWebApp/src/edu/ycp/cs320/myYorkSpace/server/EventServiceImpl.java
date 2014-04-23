@@ -15,3 +15,4 @@ public class EventServiceImpl extends RemoteServiceServlet implements
 	}
 
 }
+ 

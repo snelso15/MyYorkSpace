@@ -22,6 +22,10 @@
     <servlet-name>EventServiceImpl</servlet-name>
     <servlet-class>edu.ycp.cs320.myYorkSpace.server.EventServiceImpl</servlet-class>
   </servlet>
+    <servlet>
+    <servlet-name>EventServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.cs320.myYorkSpace.server.EventServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>

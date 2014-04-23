@@ -55,6 +55,6 @@ public class EventView extends Composite {
 				// TODO: display error msg
 				GWT.log("Login RPC call failed", caught);
 			}
-		}
+		});
 	}
 }

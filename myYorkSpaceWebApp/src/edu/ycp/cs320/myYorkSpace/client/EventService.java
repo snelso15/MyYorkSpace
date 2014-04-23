@@ -9,3 +9,4 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 public interface EventService extends RemoteService {
 	public Event[] getEventsForProfile(int profileId);//;events associated with each user's profile
 }
+ 

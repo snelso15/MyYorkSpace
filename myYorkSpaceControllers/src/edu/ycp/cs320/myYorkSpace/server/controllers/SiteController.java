@@ -22,7 +22,9 @@ public class SiteController {
 			return null;
 		}
 	}
-	
+	public Account findUserByEmail(String email) {
+		return DatabaseProvider.getInstance().findUserByEmail(email);
+	}
 	public boolean verifyUser(Account user){
 		if(validEmail(user.getEmail())&&validPassword(user.getPassword())) return true;
 		else return false;

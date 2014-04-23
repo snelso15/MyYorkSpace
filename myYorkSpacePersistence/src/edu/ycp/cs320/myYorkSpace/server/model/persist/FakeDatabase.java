@@ -80,7 +80,6 @@ public class FakeDatabase implements IDatabase {
 	}
 	
 	public Account findUserByEmail(String email) {
-		
 		for (Account acct : accountList) {
 			if (acct.getEmail().equals(email)) {
 				return acct;
