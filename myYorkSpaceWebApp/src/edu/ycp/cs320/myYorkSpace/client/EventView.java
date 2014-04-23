@@ -11,6 +11,7 @@ import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
 
 public class EventView extends Composite {
+	private Event eventToDisplay;
 	private Label hostLabel;
 //	private Label host;
 //	private Label eventName;
@@ -19,14 +20,31 @@ public class EventView extends Composite {
 	
 	private Event model;
 
-	public EventView(){
+	public EventView(Account thisAccount){
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
+
+		//while loop ensures that RPC call returns value before moving on
+		//while(eventToDisplay.getEventName()==null){
+			this.GetEvent(thisAccount);
+		//}
 		
-		hostLabel = new Label("");
+		Label eventTitleLabel = new Label("EVENT:");
+		eventTitleLabel.setStyleName("h1");
+		panel.add(eventTitleLabel);
+		panel.setWidgetLeftWidth(eventTitleLabel, 27.0, Unit.PX, 78.0, Unit.PX);
+		panel.setWidgetTopHeight(eventTitleLabel, 0.0, Unit.PX, 41.0, Unit.PX);
+		
+		hostLabel = new Label(thisAccount.getUserName());
 		panel.add(hostLabel);
 		panel.setWidgetLeftWidth(hostLabel, 27.0, Unit.PX, 236.0, Unit.PX);
 		panel.setWidgetTopHeight(hostLabel, 42.0, Unit.PX, 24.0, Unit.PX);
+		
+		Label descriptionLabel = new Label(eventToDisplay.getEventDesc());
+		panel.add(descriptionLabel);
+		panel.setWidgetLeftWidth(descriptionLabel, 27.0, Unit.PX, 331.0, Unit.PX);
+		panel.setWidgetTopHeight(descriptionLabel, 72.0, Unit.PX, 18.0, Unit.PX);
+
 	}
 	
 	public void setModel(Event model) {
@@ -37,19 +55,17 @@ public class EventView extends Composite {
 	private void updateView() {
 		hostLabel.setText(model.getHost());
 	}
-	protected void GetFriends() {
-		RPC.loginService.logIn(username, password, new AsyncCallback<Account>() {
+	protected void GetEvent(Account thisAccount) {
+		RPC.GetAccountService.getAccount(thisAccount.getEmail(), new AsyncCallback<Account>() {
 			@Override
 			public void onSuccess(Account result) {
 				if (result == null) {
-					// Unknown username/password
-					GWT.log("Unknown username/password");
+					GWT.log("Host Account no longer exists");
 				} else {
-					// Successful login!
-					GWT.log("Successful login!");
+					// Successful
+					eventToDisplay = result.getEvent();
 				}
 			}
-			
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO: display error msg
@@ -58,3 +74,4 @@ public class EventView extends Composite {
 		});
 	}
 }
+ 

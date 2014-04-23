@@ -23,8 +23,8 @@
     <servlet-class>edu.ycp.cs320.myYorkSpace.server.EventServiceImpl</servlet-class>
   </servlet>
     <servlet>
-    <servlet-name>EventServiceImpl</servlet-name>
-    <servlet-class>edu.ycp.cs320.myYorkSpace.server.EventServiceImpl</servlet-class>
+    <servlet-name>GetAccountServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.cs320.myYorkSpace.server.GetAccountServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -42,6 +42,10 @@
   <servlet-mapping>
     <servlet-name>EventServiceImpl</servlet-name>
     <url-pattern>/myyorkspacewebapp/event</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>GetAccountServiceImpl</servlet-name>
+    <url-pattern>/myyorkspacewebapp/getAccount</url-pattern>
   </servlet-mapping>
   
   <!-- Servlet context listeners -->

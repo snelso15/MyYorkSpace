@@ -11,4 +11,6 @@ public class RPC {
 			GWT.create(GetAccountService.class);
 	public static final GetFriendsServiceAsync GetFriendsService =
 			GWT.create(GetFriendsService.class);
+	public static final EventServiceAsync EventService =
+			GWT.create(GetFriendsService.class);
 }

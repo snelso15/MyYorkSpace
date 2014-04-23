@@ -9,6 +9,8 @@ public class Account implements Serializable {
 	private String birthDate;
 	private String password;
 	private String major;
+	private Event event;//for now, every account only can have one event at a time
+
 	private ArrayList<Account> friends;
 	
 	// Default constructor
@@ -55,6 +57,12 @@ public class Account implements Serializable {
 	}
 	public void setMajor(String major) {
 		this.major = major;
+	}
+	public Event getEvent() {
+		return event;
+	}
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 	public ArrayList<Account> getFriends() {
 		return friends;

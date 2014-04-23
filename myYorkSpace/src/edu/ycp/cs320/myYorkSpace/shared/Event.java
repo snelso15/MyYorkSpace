@@ -18,6 +18,10 @@ public class Event {
 		this.invited = invited;
 	}
 	
+	public Event() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

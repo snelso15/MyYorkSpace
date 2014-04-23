@@ -20,7 +20,12 @@ public class FakeDatabase implements IDatabase {
 	private List<Event> eventList;
 	
 	public FakeDatabase() {
-
+		eventList = new ArrayList<Event>();
+		Event event = new Event();
+		event.setEventName("boring event");
+		event.setEventDesc("No description required.  it is a very boring event");
+		event.setInvited(null);//no one invited:(
+		
 		Account account= new Account();
 		account.setEmail("sam@ycp.edu");
 		Birthday birthday = new Birthday(5, 7, 1994);
@@ -28,6 +33,7 @@ public class FakeDatabase implements IDatabase {
 		account.setMajor("Computer Engineering");
 		account.setPassword("123abc");
 		account.setUserName("Sam");
+		account.setEvent(event);
 		
 		accountList = new ArrayList<Account>();
 		accountList.add(account);
@@ -49,9 +55,10 @@ public class FakeDatabase implements IDatabase {
 		account.setUserName("Prof");
 		
 		accountList.add(account);
+
 		
-		eventList = new ArrayList<Event>();
-		// TODO: populate
+		
+		
 	}
 	public void addUser(Account userToAdd){
 			accountList.add(userToAdd);
