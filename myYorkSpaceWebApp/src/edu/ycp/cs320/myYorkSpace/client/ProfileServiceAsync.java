@@ -9,5 +9,5 @@ import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public interface ProfileServiceAsync {
 	
-	void getFriendPosts(Account user, AsyncCallback<ArrayList<Post>> callback);
+	
 }

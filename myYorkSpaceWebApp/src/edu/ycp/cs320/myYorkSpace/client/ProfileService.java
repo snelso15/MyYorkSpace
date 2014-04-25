@@ -12,5 +12,5 @@ import edu.ycp.cs320.myYorkSpace.shared.Post;
 @RemoteServiceRelativePath("profile")
 public interface ProfileService extends RemoteService{
 
-	public ArrayList<Post> getFriendPosts(Account user);
+	
 }
