@@ -10,24 +10,18 @@ import com.google.gwt.dom.client.Style.Unit;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
 
-public class EventView extends Composite {
+public class EventView extends Composite implements View {
 	private Event eventToDisplay;
 	private Label hostLabel;
 //	private Label host;
-//	private Label eventName;
-//	private Label eventdesc;
-//	private Label eventTime;
+
 	
 	private Event model;
 
-	public EventView(Account thisAccount){
+	public EventView(){
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
 
-		//while loop ensures that RPC call returns value before moving on
-		//while(eventToDisplay.getEventName()==null){
-			this.GetEvent(thisAccount);
-		//}
 		
 		Label eventTitleLabel = new Label("EVENT:");
 		eventTitleLabel.setStyleName("h1");
@@ -35,12 +29,12 @@ public class EventView extends Composite {
 		panel.setWidgetLeftWidth(eventTitleLabel, 27.0, Unit.PX, 78.0, Unit.PX);
 		panel.setWidgetTopHeight(eventTitleLabel, 0.0, Unit.PX, 41.0, Unit.PX);
 		
-		hostLabel = new Label(thisAccount.getUserName());
+		hostLabel = new Label("");
 		panel.add(hostLabel);
 		panel.setWidgetLeftWidth(hostLabel, 27.0, Unit.PX, 236.0, Unit.PX);
 		panel.setWidgetTopHeight(hostLabel, 42.0, Unit.PX, 24.0, Unit.PX);
 		
-		Label descriptionLabel = new Label(eventToDisplay.getEventDesc());
+		Label descriptionLabel = new Label("");
 		panel.add(descriptionLabel);
 		panel.setWidgetLeftWidth(descriptionLabel, 27.0, Unit.PX, 331.0, Unit.PX);
 		panel.setWidgetTopHeight(descriptionLabel, 72.0, Unit.PX, 18.0, Unit.PX);
@@ -49,14 +43,22 @@ public class EventView extends Composite {
 	
 	public void setModel(Event model) {
 		this.model = model;
+	}
+	
+	public void activate() {
+		if (model == null) {
+			throw new IllegalStateException("Need to set an Event before activating EventView");
+		}
 		updateView();
 	}
 
 	private void updateView() {
 		hostLabel.setText(model.getHost());
 	}
-	protected void GetEvent(Account thisAccount) {
-		RPC.GetAccountService.getAccount(thisAccount.getEmail(), new AsyncCallback<Account>() {
+	
+	/*
+	protected void GetEvent(Account host) {
+		RPC.GetAccountService.getAccount(host.getEmail(), new AsyncCallback<Account>() {
 			@Override
 			public void onSuccess(Account result) {
 				if (result == null) {
@@ -73,5 +75,6 @@ public class EventView extends Composite {
 			}
 		});
 	}
+	*/
 }
  
