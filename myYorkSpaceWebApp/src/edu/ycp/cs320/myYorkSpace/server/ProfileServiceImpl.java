@@ -17,5 +17,8 @@ public class ProfileServiceImpl extends RemoteServiceServlet implements ProfileS
 	{	
 		return user.getPosts();
 	}
-	
+	public String getUserName(Account user)
+	{
+		return user.getUserName();
+	}
 }

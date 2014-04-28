@@ -9,5 +9,6 @@ import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public interface ProfileServiceAsync {
 	
-	
+	public void getActiveUserPosts(Account user, AsyncCallback<ArrayList<Post>> callback);
+	public void getUserName(Account user, AsyncCallback<String> callback);
 }
