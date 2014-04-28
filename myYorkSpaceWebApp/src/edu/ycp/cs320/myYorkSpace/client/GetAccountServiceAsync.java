@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 
 
-@RemoteServiceRelativePath("event")
+@RemoteServiceRelativePath("getAccount")
 public interface GetAccountServiceAsync{
-	public void getAccount(String email, AsyncCallback<Account> callback);
+	public void getAccount(String email, String eventName, AsyncCallback<Account> callback);
 }

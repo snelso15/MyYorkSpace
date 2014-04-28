@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 
-public class LoginView extends Composite {
+public class LoginView extends Composite implements View {
 	private TextBox userNameTextBox;
 	private PasswordTextBox passwordTextBox;
 
@@ -45,6 +45,11 @@ public class LoginView extends Composite {
 		panel.setWidgetLeftWidth(loginButton, 20.0, Unit.PX, 80.0, Unit.PX);
 		panel.setWidgetTopHeight(loginButton, 180.0, Unit.PX, 32.0, Unit.PX);
 	}
+	
+	@Override
+	public void activate() {
+		// no special initialization to do
+	}
 
 	protected void handleLogin() {
 		String username = userNameTextBox.getText();
@@ -59,6 +64,7 @@ public class LoginView extends Composite {
 				} else {
 					// Successful login!
 					GWT.log("Successful login!");
+					Session.getInstance().setAccount(result);
 				}
 			}
 			
