@@ -15,11 +15,12 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.MenuItemSeparator;
 import com.google.gwt.user.client.ui.ListBox;
 
+import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
-public class ProfileView extends Composite{
+public class ProfileView extends Composite implements View{
 	
-	public ProfileView() {
+	public ProfileView(Account UserProfileBeingShown) {
 		
 		Session profile = Session.getInstance();
 		FlowPanel flowPanel = new FlowPanel();
@@ -66,6 +67,12 @@ public class ProfileView extends Composite{
 		{
 			listBox.addItem(userPosts.get(i).getPostText());
 		}
+	}
+
+	@Override
+	public void activate() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.DockPanel;
 
-public class CreateAccountView extends Composite {
+public class CreateAccountView extends Composite implements View {
 	private TextBox userNameTextBox;
 	private PasswordTextBox passwordTextBox;
 	private TextBox emailTextBox;
@@ -114,11 +114,13 @@ public class CreateAccountView extends Composite {
 		String email = emailTextBox.getText();
 		String birthday = birthdayTextBox.getText();
 		String major = majorTextBox.getText();
-		
 
-		
-		
-		Account accountToAdd = new Account(userName, email, password,  birthday, major, null);
+		Account accountToAdd = new Account();
+		accountToAdd.setBirthDate(birthday);
+		accountToAdd.setEmail(email);
+		accountToAdd.setUserName(userName);
+		accountToAdd.setMajor(major);
+		accountToAdd.setPassword(password);
 		
 		RPC.AddUserService.AddUser(accountToAdd, new AsyncCallback<Account>() {
 			@Override
@@ -137,5 +139,11 @@ public class CreateAccountView extends Composite {
 				GWT.log("RPC call failed", caught);
 			}
 		});
+	}
+
+	@Override
+	public void activate() {
+		// TODO Auto-generated method stub
+		
 	}
 }

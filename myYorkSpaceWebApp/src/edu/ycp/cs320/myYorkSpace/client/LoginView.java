@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import com.google.gwt.user.client.ui.Label;
 
 public class LoginView extends Composite implements View {
 	private TextBox userNameTextBox;
@@ -44,6 +45,32 @@ public class LoginView extends Composite implements View {
 		panel.add(loginButton);
 		panel.setWidgetLeftWidth(loginButton, 20.0, Unit.PX, 80.0, Unit.PX);
 		panel.setWidgetTopHeight(loginButton, 180.0, Unit.PX, 32.0, Unit.PX);
+		
+		Label lblLogIn = new Label("Log In");
+		panel.add(lblLogIn);
+		panel.setWidgetLeftWidth(lblLogIn, 20.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblLogIn, 37.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblEmail = new Label("Email");
+		panel.add(lblEmail);
+		panel.setWidgetLeftWidth(lblEmail, 161.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEmail, 100.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblPassword = new Label("Password");
+		panel.add(lblPassword);
+		panel.setWidgetLeftWidth(lblPassword, 161.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblPassword, 140.0, Unit.PX, 18.0, Unit.PX);
+		
+		Button btnCreateNewAccount = new Button("Create New Account");
+		btnCreateNewAccount.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				MyYorkSpaceWebApp.setView(new CreateAccountView());
+			}
+		});
+		panel.add(btnCreateNewAccount);
+		panel.setWidgetLeftWidth(btnCreateNewAccount, 244.0, Unit.PX, 163.0, Unit.PX);
+		panel.setWidgetTopHeight(btnCreateNewAccount, 16.0, Unit.PX, 39.0, Unit.PX);
 	}
 	
 	@Override
@@ -65,6 +92,7 @@ public class LoginView extends Composite implements View {
 					// Successful login!
 					GWT.log("Successful login!");
 					Session.getInstance().setAccount(result);
+					MyYorkSpaceWebApp.setView(new HomeView());
 				}
 			}
 			

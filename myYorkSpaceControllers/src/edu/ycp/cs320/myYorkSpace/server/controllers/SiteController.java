@@ -1,9 +1,11 @@
 package edu.ycp.cs320.myYorkSpace.server.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.ycp.cs320.myYorkSpace.server.model.persist.DatabaseProvider;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import edu.ycp.cs320.myYorkSpace.shared.Event;
 import edu.ycp.cs320.myYorkSpace.shared.Site;
 
 public class SiteController {
@@ -46,6 +48,23 @@ public class SiteController {
 		}
 		return valid; 
 	}
+
+	public List<Event> getEventsForUser(String email) {
+		ArrayList<Account> friends = findUserByEmail(email).getFriends();
+		ArrayList<Event> userEvents = new ArrayList<Event>();
+		ArrayList<Event> listOfEvents = new ArrayList<Event>();
+		for (int i = 0; i<friends.size(); i++){
+			userEvents = friends.get(i).getEvents();
+			listOfEvents.addAll(userEvents);
+		}
+		return listOfEvents;
+	}
+
+	public List<Account> getFriendsOfUser(String email) {
+		ArrayList<Account> friends = findUserByEmail(email).getFriends();
+		return friends;
+	}
+	
 	
 
 }

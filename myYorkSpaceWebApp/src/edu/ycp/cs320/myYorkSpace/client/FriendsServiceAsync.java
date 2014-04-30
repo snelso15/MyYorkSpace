@@ -1,5 +1,6 @@
-
 package edu.ycp.cs320.myYorkSpace.client;
+
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -7,7 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 
 
-@RemoteServiceRelativePath("getAccount")
-public interface GetAccountServiceAsync{
-	public void getAccount(String email, String eventName, AsyncCallback<Account> callback);
+@RemoteServiceRelativePath("friends")
+public interface FriendsServiceAsync {
+	public void getFriends(String email, AsyncCallback<List <Account>> callback);
 }

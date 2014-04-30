@@ -22,5 +22,4 @@ public class Session {
 	public Account getAccount() {
 		return account;
 	}
-	
 }

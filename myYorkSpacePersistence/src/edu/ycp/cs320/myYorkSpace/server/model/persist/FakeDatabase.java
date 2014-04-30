@@ -35,6 +35,16 @@ public class FakeDatabase implements IDatabase {
 		account.setUserName("Sam");
 		account.setEvent(event);
 		
+	//	Post post1 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVER", null);
+	//	Post post2 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVERrrr", null);
+	//	Post post3 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVERrrrrrr", null);
+	//	account.getPosts().add(post1);
+	//	account.getPosts().add(post2);
+	//	account.getPosts().add(post3);
+		
+		
+		
+		
 		accountList = new ArrayList<Account>();
 		accountList.add(account);
 
