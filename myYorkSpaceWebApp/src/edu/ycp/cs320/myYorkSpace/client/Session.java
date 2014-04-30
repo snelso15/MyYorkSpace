@@ -10,6 +10,7 @@ public class Session {
 	}
 	
 	private Account account;
+	//private MyYorkSpaceWebApp app;
 	
 	public Session() {
 		
@@ -22,4 +23,12 @@ public class Session {
 	public Account getAccount() {
 		return account;
 	}
+
+	//public MyYorkSpaceWebApp getApp() {
+	//	return app;
+	//}
+
+	//public void setApp(MyYorkSpaceWebApp app) {
+	//	this.app = app;
+	//}
 }

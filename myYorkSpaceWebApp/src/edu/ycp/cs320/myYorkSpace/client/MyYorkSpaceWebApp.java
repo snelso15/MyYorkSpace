@@ -13,12 +13,16 @@ import edu.ycp.cs320.myYorkSpace.shared.Account;
  */
 public class MyYorkSpaceWebApp implements EntryPoint {
 	private static View currentView;
+	private static final MyYorkSpaceWebApp theInstance = new MyYorkSpaceWebApp();
+	
+	public static MyYorkSpaceWebApp getInstance() {
+		return theInstance;
+	}
 	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-
 		View loginView = new LoginView();
 
 		setView(loginView);
@@ -28,9 +32,12 @@ public class MyYorkSpaceWebApp implements EntryPoint {
 		if (currentView != null) {
 			RootLayoutPanel.get().remove(currentView);
 		}
+		
 		RootLayoutPanel.get().add(view);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
+		
+		view.activate();
 
 		currentView = view;
 	}
