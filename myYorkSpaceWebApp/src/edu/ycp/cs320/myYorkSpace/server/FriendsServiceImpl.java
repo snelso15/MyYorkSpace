@@ -1,5 +1,6 @@
 package edu.ycp.cs320.myYorkSpace.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -13,7 +14,7 @@ public class FriendsServiceImpl extends RemoteServiceServlet implements
 		FriendsService {
 
 	@Override
-	public List<Account> getFriends(String email){
+	public ArrayList<Account> getFriends(String email){
 		SiteController controller = new SiteController();
 		return controller.getFriendsOfUser(email);
 	}

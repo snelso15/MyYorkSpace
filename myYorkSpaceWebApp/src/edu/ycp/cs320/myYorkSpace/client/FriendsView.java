@@ -1,4 +1,5 @@
 package edu.ycp.cs320.myYorkSpace.client;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -21,12 +22,12 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 
 public class FriendsView extends Composite implements View {
 
-	private List<Account> friends;
+	private ArrayList<Account> friends;
 	private ListBox listBox;
 
 
 	public FriendsView(){
-		
+		friends = new ArrayList<Account>();
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
 		
@@ -55,11 +56,12 @@ public class FriendsView extends Composite implements View {
 	}
 	
 	protected void GetFriends(Account host) {
-		RPC.FriendsService.getFriends(host.getEmail(), new AsyncCallback<List<Account>>() {
+		RPC.FriendsService.getFriends(host.getEmail(), new AsyncCallback<ArrayList<Account>>() {
 			@Override
-			public void onSuccess(List<Account> returnedList) {
+			public void onSuccess(ArrayList<Account> returnedList) {
 				if (returnedList == null) {
 					GWT.log("Host Account no longer exists");
+					
 				} else {
 					// Successful
 					friends = returnedList;

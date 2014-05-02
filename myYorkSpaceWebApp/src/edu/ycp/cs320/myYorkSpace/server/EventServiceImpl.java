@@ -1,5 +1,6 @@
 package edu.ycp.cs320.myYorkSpace.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -12,7 +13,7 @@ public class EventServiceImpl extends RemoteServiceServlet implements
 		EventService {
 
 	@Override
-	public List<Event> getEvents(String email){
+	public ArrayList<Event> getEvents(String email){
 		SiteController controller = new SiteController();
 		return controller.getEventsForUser(email);
 	}

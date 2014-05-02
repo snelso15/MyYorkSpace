@@ -20,7 +20,7 @@ import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class ProfileView extends Composite implements View{
 	
-	public ProfileView(Account UserProfileBeingShown) {
+	public ProfileView(Account userProfileBeingShown) {
 		
 		Session profile = Session.getInstance();
 		FlowPanel flowPanel = new FlowPanel();
@@ -53,7 +53,7 @@ public class ProfileView extends Composite implements View{
 		MenuItemSeparator separator_3 = new MenuItemSeparator();
 		menuBar.addSeparator(separator_3);
 		
-		String userName = profile.getAccount().getUserName();
+		String userName = userProfileBeingShown.getUserName();
 		Label lblNewLabel = new Label(userName);
 		flowPanel.add(lblNewLabel);
 		lblNewLabel.setWidth("235px");

@@ -1,8 +1,9 @@
 package edu.ycp.cs320.myYorkSpace.shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Event {
+public class Event implements Serializable {
 	private int id;
 	private String eventName;
 	private String eventDesc;

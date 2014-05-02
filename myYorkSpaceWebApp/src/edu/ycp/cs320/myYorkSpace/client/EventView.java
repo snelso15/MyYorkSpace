@@ -1,5 +1,6 @@
 package edu.ycp.cs320.myYorkSpace.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -13,18 +14,19 @@ import com.google.gwt.event.dom.client.ClickHandler;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
+
 import com.google.gwt.user.client.ui.ListBox;
 
 
 public class EventView extends Composite implements View {
 
-
-	private List<Event> events;
+	private ArrayList<Event> events;
 	private ListBox listBox;
 	private Event displayedEvent;
 	private Label lblEvent;
 
 	public EventView(){
+		events = new ArrayList<Event>() ;
 		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
@@ -43,25 +45,26 @@ public class EventView extends Composite implements View {
 	}
 	
 	public void activate() {
-		listBox.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				displayedEvent =  events.get(listBox.getSelectedIndex());
-			}
-		});
+
 		listBox.setVisibleItemCount(events.size());
 		for(int i = 0; i < events.size(); i++)
 		{
 			listBox.addItem(events.get(i).getEventName());
 		}
-		lblEvent.setText(displayedEvent.getEventDesc());
+		listBox.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				displayedEvent =  events.get(listBox.getSelectedIndex());
+				lblEvent.setText(displayedEvent.getEventDesc());
+			}
+		});
 	}
 
 	
 	protected void GetEvents(Account host) {
-		RPC.EventService.getEvents(host.getEmail(), new AsyncCallback<List<Event>>() {
+		RPC.EventService.getEvents(host.getEmail(), new AsyncCallback<ArrayList<Event>>() {
 			@Override
-			public void onSuccess(List<Event> returnedList) {
+			public void onSuccess(ArrayList<Event> returnedList) {
 				if (returnedList == null) {
 					GWT.log("Host Account no longer exists");
 				} else {

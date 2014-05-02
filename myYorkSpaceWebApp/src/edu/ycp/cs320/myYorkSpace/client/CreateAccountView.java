@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RichTextArea;
@@ -122,6 +123,8 @@ public class CreateAccountView extends Composite implements View {
 		accountToAdd.setMajor(major);
 		accountToAdd.setPassword(password);
 		
+		
+		
 		RPC.AddUserService.AddUser(accountToAdd, new AsyncCallback<Account>() {
 			@Override
 			public void onSuccess(Account result) {
@@ -130,6 +133,8 @@ public class CreateAccountView extends Composite implements View {
 					GWT.log("Failed.  Reenter valid data");
 				} else {
 					// Successful 
+					Session.getInstance().setAccount(result);
+					MyYorkSpaceWebApp.setView(new HomeView());
 					GWT.log("Add User Successful!");
 				}
 			}

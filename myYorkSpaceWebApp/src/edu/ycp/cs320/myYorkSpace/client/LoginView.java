@@ -79,28 +79,33 @@ public class LoginView extends Composite implements View {
 	}
 
 	protected void handleLogin() {
-		String username = userNameTextBox.getText();
+		String email = userNameTextBox.getText();
 		String password = passwordTextBox.getText();
 		
-		RPC.loginService.logIn(username, password, new AsyncCallback<Account>() {
-			@Override
-			public void onSuccess(Account result) {
-				if (result == null) {
-					// Unknown username/password
-					GWT.log("Unknown username/password");
-				} else {
-					// Successful login!
-					GWT.log("Successful login!");
-					Session.getInstance().setAccount(result);
-					MyYorkSpaceWebApp.setView(new HomeView());
+		if(email!= "" && password!=""){
+			RPC.LoginService.logIn(email, password, new AsyncCallback<Account>() {
+				@Override
+				public void onSuccess(Account result) {
+					if (result == null) {
+						// Unknown username/password
+						GWT.log("Unknown username/password");
+					} else {
+						// Successful login!
+						GWT.log("Successful login!");
+						Session.getInstance().setAccount(result);
+						MyYorkSpaceWebApp.setView(new HomeView());
+					}
 				}
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO: display error msg
-				GWT.log("Login RPC call failed", caught);
-			}
-		});
+				
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO: display error msg
+					GWT.log("Login RPC call failed", caught);
+				}
+			});
+		}
+		else{
+			GWT.log("must enter values");
+		}
 	}
 }

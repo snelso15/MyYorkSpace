@@ -27,6 +27,7 @@ public class SiteController {
 	public Account findUserByEmail(String email) {
 		return DatabaseProvider.getInstance().findUserByEmail(email);
 	}
+	
 	public boolean verifyUser(Account user){
 		if(validEmail(user.getEmail())&&validPassword(user.getPassword())) return true;
 		else return false;
@@ -49,7 +50,7 @@ public class SiteController {
 		return valid; 
 	}
 
-	public List<Event> getEventsForUser(String email) {
+	public ArrayList<Event> getEventsForUser(String email) {
 		ArrayList<Account> friends = findUserByEmail(email).getFriends();
 		ArrayList<Event> userEvents = new ArrayList<Event>();
 		ArrayList<Event> listOfEvents = new ArrayList<Event>();
@@ -60,11 +61,8 @@ public class SiteController {
 		return listOfEvents;
 	}
 
-	public List<Account> getFriendsOfUser(String email) {
+	public ArrayList<Account> getFriendsOfUser(String email) {
 		ArrayList<Account> friends = findUserByEmail(email).getFriends();
 		return friends;
 	}
-	
-	
-
 }

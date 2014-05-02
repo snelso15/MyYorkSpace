@@ -7,9 +7,9 @@ import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class PostController {
-	public void createPost(String postUser, String postText, Attachment postAttach)
+	public void createPost(String postUser, String postText)//, Attachment postAttach)
 	{
-		Post p = new Post(postUser, postText, postAttach);
+		Post p = new Post(postUser, postText);//, postAttach);
 		
 		DatabaseProvider.getInstance().createPost(p);
 	}

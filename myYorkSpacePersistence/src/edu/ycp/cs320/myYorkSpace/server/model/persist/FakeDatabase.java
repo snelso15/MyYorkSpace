@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
@@ -14,17 +15,27 @@ import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class FakeDatabase implements IDatabase {
-	private List<Account> accountList;
-	private List<Post> postList;
-	private List<Message> messageList;
-	private List<Event> eventList;
+	private ArrayList<Account> accountList;
+	private ArrayList<Post> postList;
+	private ArrayList<Message> messageList;
+	private ArrayList<Event> eventList;
 	
 	public FakeDatabase() {
 		eventList = new ArrayList<Event>();
+		accountList = new ArrayList<Account>();
+		
 		Event event = new Event();
 		event.setEventName("boring event");
 		event.setEventDesc("No description required.  it is a very boring event");
 		event.setInvited(null);//no one invited:(
+		
+		Event event2 = new Event();
+		event2.setEventName("another boring event");
+		event2.setEventDesc("waaaaaaaaaaaaahhhhhhhhhhhhh its boring");
+		event2.setInvited(null);//no one invited:(
+		
+		eventList.add(event);
+		eventList.add(event2);
 		
 		Account account= new Account();
 		account.setEmail("sam@ycp.edu");
@@ -33,47 +44,67 @@ public class FakeDatabase implements IDatabase {
 		account.setMajor("Computer Engineering");
 		account.setPassword("123abc");
 		account.setUserName("Sam");
-		account.setEvent(event);
-		
-	//	Post post1 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVER", null);
-	//	Post post2 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVERrrr", null);
-	//	Post post3 = new Post(null, "WOOOOO THIS CLASS IS ALMOST OVERrrrrrr", null);
-	//	account.getPosts().add(post1);
-	//	account.getPosts().add(post2);
-	//	account.getPosts().add(post3);
-		
-		
-		
-		
-		accountList = new ArrayList<Account>();
-		accountList.add(account);
+		account.setEvents(eventList);
 
-		account.setEmail("alec@ycp.edu");
+ 		accountList.add(account);
+		
+		Account account1= new Account();
+		account1.setEmail("alec@ycp.edu");
 		Birthday birthday1 = new Birthday(12, 7, 1993);
-		account.setBirthDate(birthday1.toString());
-		account.setMajor("Electrical Engineering");
-		account.setPassword("abc123");
-		account.setUserName("Alec");
+		account1.setBirthDate(birthday1.toString());
+		account1.setMajor("Electrical Engineering");
+		account1.setPassword("abc123");
+		account1.setUserName("Alec");
+		account1.setEvents(eventList);
+		
+		Account account2= new Account();
+		account2.setEmail("sammy@ycp.edu");
+		Birthday birthday2 = new Birthday(12, 7, 1993);
+		account2.setBirthDate(birthday2.toString());
+		account2.setMajor("Electrical Engineering");
+		account2.setPassword("sammy");
+		account2.setUserName("sammy");
+		account2.setEvents(eventList);
 	
-		accountList.add(account);
+		accountList.add(account2);
 		
-		account.setEmail("prof@ycp.edu");
-		Birthday birthday2 = new Birthday(11, 5, 1975);
-		account.setBirthDate(birthday2.toString());
-		account.setMajor("Mechanical Engineering");
-		account.setPassword("1a2b3c");
-		account.setUserName("Prof");
+
+		//accountList.get(0).addFriend(account);
 		
-		accountList.add(account);
+		Account account3= new Account();
+		account3.setEmail("prof@ycp.edu");
+		Birthday birthday3 = new Birthday(11, 5, 1975);
+		account3.setBirthDate(birthday3.toString());
+		account3.setMajor("Mechanical Engineering");
+		account3.setPassword("prof");
+		account3.setUserName("Prof");
+		
+		
+		ArrayList<Account> frnds = new ArrayList<Account>();
+		frnds.add(account);
+		frnds.add(account1);
+		frnds.add(account2);
+		
+		
+		account3.setFriends(frnds);
+		//account3.addFriend(account);
+		//account3.addFriend(account1);
+		//account3.addFriend(account2);
+		
 
 		
+		accountList.add(account3);
 		
-		
+		for (int i = 0; i<accountList.size(); i++) {
+			System.out.println("user " + i + ":");
+			  System.out.println(accountList.get(i).getEmail());
+		}
+
 	}
+	
 	public void addUser(Account userToAdd){
 			accountList.add(userToAdd);
 	}
-	
 	
 	public Account logIn(String email, String password) {
 		Account thisUser = findUserByEmail(email);
@@ -97,9 +128,11 @@ public class FakeDatabase implements IDatabase {
 	}
 	
 	public Account findUserByEmail(String email) {
-		for (Account acct : accountList) {
-			if (acct.getEmail().equals(email)) {
-				return acct;
+
+		for (int i = 0; i<accountList.size(); i++) {
+			if (accountList.get(i).getEmail().equals(email)) {
+				System.out.println("user with this email exists");
+				return accountList.get(i);
 			}
 		}
 		return null;
@@ -107,7 +140,6 @@ public class FakeDatabase implements IDatabase {
 	
 	public void createPost(Post postToAdd) {
 		postList.add(postToAdd);
-		
 	}
 	
 	public ArrayList<Post> getPosts(String postUser) {
@@ -121,9 +153,9 @@ public class FakeDatabase implements IDatabase {
 		}
 		return foundPosts;
 	}
+	
 	public void createMessage(Message messToAdd) {
 		messageList.add(messToAdd);
-		
 	}
 	
 	public ArrayList<Message> getMessage(String user) {

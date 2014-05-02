@@ -1,16 +1,18 @@
 package edu.ycp.cs320.myYorkSpace.shared;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
 
 	private String postUser;
 	private String postText;
-	private Attachment postAttach;
+	//private Attachment postAttach;
 	
-	public Post(String postUser, String postText, Attachment postAttach)
+	public Post(String postUser, String postText) //Attachment postAttach)
 	{
 		this.postUser = postUser;
 		this.postText = postText;
-		this.postAttach = postAttach;
+		//this.postAttach = postAttach;
 	}
 	
 	public void setPostUser(String postUser)
@@ -33,13 +35,13 @@ public class Post {
 		return this.postText;
 	}
 	
-	public void setPostAttach(Attachment postAttach)
-	{
-		this.postAttach = postAttach;
-	}
-	
-	public Attachment getPostAttchment()
-	{
-		return this.postAttach;
-	}
+//	public void setPostAttach(Attachment postAttach)
+//	{
+//		this.postAttach = postAttach;
+//	}
+//	
+//	public Attachment getPostAttchment()
+//	{
+//		return this.postAttach;
+//	}
 }

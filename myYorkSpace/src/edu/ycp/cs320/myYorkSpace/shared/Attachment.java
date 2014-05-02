@@ -1,8 +1,9 @@
 package edu.ycp.cs320.myYorkSpace.shared;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Attachment {
+public class Attachment implements Serializable {
 
 	private File attach;
 	

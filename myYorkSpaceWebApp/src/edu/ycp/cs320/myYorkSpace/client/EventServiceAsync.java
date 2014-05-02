@@ -1,5 +1,6 @@
 package edu.ycp.cs320.myYorkSpace.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -11,5 +12,5 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 
 @RemoteServiceRelativePath("event")
 public interface EventServiceAsync {
-	public void getEvents(String email, AsyncCallback<List <Event>> callback);
+	public void getEvents(String email, AsyncCallback<ArrayList<Event>> asyncCallback);
 }

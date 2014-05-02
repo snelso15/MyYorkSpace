@@ -1,5 +1,6 @@
 package edu.ycp.cs320.myYorkSpace.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -9,6 +10,6 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 
 @RemoteServiceRelativePath("event")
 public interface EventService extends RemoteService {
-	public List<Event> getEvents(String email);
+	public ArrayList<Event> getEvents(String email);
 }
  

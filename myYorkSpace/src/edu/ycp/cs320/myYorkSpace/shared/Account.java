@@ -9,7 +9,6 @@ public class Account implements Serializable {
 	private String birthDate;
 	private String password;
 	private String major;
-	private Event event;//for now, every account only can have one event at a time
 
 	private ArrayList<Account> friends;
 	private ArrayList<Post> posts;
@@ -17,6 +16,9 @@ public class Account implements Serializable {
 	
 	// Default constructor
 	public Account() {
+		 friends = new ArrayList<Account>();
+		 posts = new ArrayList<Post>();
+		 events= new ArrayList<Event>();
 	}
 	
 	//constructor
@@ -62,17 +64,14 @@ public class Account implements Serializable {
 	public void setMajor(String major) {
 		this.major = major;
 	}
-	public Event getEvent() {
-		return event;
-	}
-	public void setEvent(Event event) {
-		this.event = event;
-	}
 	public ArrayList<Account> getFriends() {
 		return friends;
 	}
 	public void setFriends(ArrayList<Account> friends) {
 		this.friends = friends;
+	}
+	public void addFriend(Account friend) {
+		this.friends.add(friend);
 	}
 	
 	public ArrayList<Post> getPosts(){
@@ -88,5 +87,8 @@ public class Account implements Serializable {
 	
 	public void setEvents(ArrayList<Event> events){
 		this.events = events;
+	}
+	public void addEvent(Event event){
+		this.events.add(event);
 	}
 }
