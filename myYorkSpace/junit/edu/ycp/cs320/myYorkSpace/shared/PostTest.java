@@ -16,9 +16,9 @@ public class PostTest extends TestCase{
 	@Before
 	protected void setUp()
 	{
-//		a = new Post("Taylor", "Going to the mall, who wants to come?!");
-//		b = new Post("Bob", "Just got my truck back from the shop!");
-//		c = new Post("Chris", "Thinking about going on a road trip, anyone else want to go?");
+		a = new Post("Taylor", "Going to the mall, who wants to come?!", null);
+		b = new Post("Bob", "Just got my truck back from the shop!", null);
+		c = new Post("Chris", "Thinking about going on a road trip, anyone else want to go?", null);
 	}
 	
 	@Test

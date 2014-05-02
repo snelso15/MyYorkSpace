@@ -13,14 +13,14 @@ public class AccountTest {
 	private Account user3;
 	@Before
 	public void setUp() {
-		user = new Account("Sam", "snelso15@ycp.edu", "mYpassword1", "05/07/1994",  "CE", null);
-		user2 = new Account("Alec", "snelso15ycp.edu", "mYpassword1", "05/07/1994",  "ME", null);
+		user = new Account("Sam", "snelso15@ycp.edu", "mYpassword1", "05/07/1994",  "CE", null, null, null);
+		user2 = new Account("Alec", "snelso15ycp.edu", "mYpassword1", "05/07/1994",  "ME", null, null, null);
 		
 		ArrayList<Account> friends = new ArrayList<Account>();
 		friends.add(user);
 		friends.add(user2);
 		
-		user3 = new Account("Alec", "snelso15ycp.edu", "mYpassword1", "05/07/1994",  "ME", friends);
+		user3 = new Account("Alec", "snelso15ycp.edu", "mYpassword1", "05/07/1994",  "ME", friends, null, null);
 	}
 	
 	@Test
