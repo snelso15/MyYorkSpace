@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -30,18 +31,32 @@ public class EventView extends Composite implements View {
 		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
+		panel.setSize("468px", "388px");
 		
-		lblEvent = new Label("Event: ");
+		lblEvent = new Label("Event Description: ");
 		panel.add(lblEvent);
-		panel.setWidgetLeftWidth(lblEvent, 129.0, Unit.PX, 462.0, Unit.PX);
-		panel.setWidgetTopHeight(lblEvent, 63.0, Unit.PX, 61.0, Unit.PX);
+		panel.setWidgetLeftWidth(lblEvent, 166.0, Unit.PX, 462.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEvent, 116.0, Unit.PX, 61.0, Unit.PX);
 		
 		listBox = new ListBox();
 		panel.add(listBox);
-		panel.setWidgetLeftWidth(listBox, 27.0, Unit.PX, 65.0, Unit.PX);
-		panel.setWidgetTopHeight(listBox, 24.0, Unit.PX, 213.0, Unit.PX);
+		panel.setWidgetLeftWidth(listBox, 27.0, Unit.PX, 133.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox, 27.0, Unit.PX, 267.0, Unit.PX);
 		
 		GetEvents(Session.getInstance().getAccount());
+		
+		Button homeButton = new Button();
+		panel.add(homeButton);
+		homeButton.setText("HOME");
+		panel.setWidgetLeftWidth(homeButton, 27.0, Unit.PX, 65.0, Unit.PX);
+		panel.setWidgetTopHeight(homeButton, 299.0, Unit.PX, 28.0, Unit.PX);
+		homeButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				MyYorkSpaceWebApp.setView(new HomeView());
+			}
+		});
+		
 	}
 	
 	public void activate() {

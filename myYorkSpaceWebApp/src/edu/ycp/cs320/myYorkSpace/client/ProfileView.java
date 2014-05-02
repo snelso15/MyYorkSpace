@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.ListBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
+import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.InlineLabel;
 
 public class ProfileView extends Composite implements View{
 	
@@ -28,6 +30,7 @@ public class ProfileView extends Composite implements View{
 		
 		MenuBar menuBar = new MenuBar(false);
 		flowPanel.add(menuBar);
+		menuBar.setWidth("276px");
 		
 		MenuItem mntmHome = new MenuItem("Home", false, (Command) null);
 		menuBar.addItem(mntmHome);
@@ -50,17 +53,26 @@ public class ProfileView extends Composite implements View{
 		MenuItem mntmEvents = new MenuItem("Events", false, (Command) null);
 		menuBar.addItem(mntmEvents);
 		
+
 		MenuItemSeparator separator_3 = new MenuItemSeparator();
 		menuBar.addSeparator(separator_3);
 		
 		String userName = userProfileBeingShown.getUserName();
+
+		
+		InlineLabel nlnlblNewInlinelabel = new InlineLabel("New InlineLabel");
+		flowPanel.add(nlnlblNewInlinelabel);
+
 		Label lblNewLabel = new Label(userName);
 		flowPanel.add(lblNewLabel);
 		lblNewLabel.setWidth("235px");
 		
+		Label lblNewLabel_1 = new Label("Posts");
+		flowPanel.add(lblNewLabel_1);
+		
 		ListBox listBox = new ListBox();
 		flowPanel.add(listBox);
-		listBox.setSize("349px", "351px");
+		listBox.setSize("439px", "351px");
 		ArrayList<Post> userPosts = profile.getAccount().getPosts();
 		listBox.setVisibleItemCount(10);
 		for(int i = 0; i < userPosts.size(); i++)
