@@ -34,27 +34,42 @@ public class ProfileView extends Composite implements View{
 		MenuBar menuBar = new MenuBar(false);
 		flowPanel.add(menuBar);
 		menuBar.setWidth("276px");
-		
-		MenuItem mntmHome = new MenuItem("Home", false, (Command) null);
+	      
+		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
 		menuBar.addItem(mntmHome);
-		mntmHome.
 		
 		MenuItemSeparator separator = new MenuItemSeparator();
 		menuBar.addSeparator(separator);
 		
-		MenuItem mntmFriends = new MenuItem("Friends", false, (Command) null);
+		MenuItem mntmFriends = new MenuItem("Friends", new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new FriendsView());
+		        }
+		      });
 		menuBar.addItem(mntmFriends);
 		
 		MenuItemSeparator separator_1 = new MenuItemSeparator();
 		menuBar.addSeparator(separator_1);
 		
-		MenuItem mntmMessage = new MenuItem("Message", false, (Command) null);
+		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
 		menuBar.addItem(mntmMessage);
 		
 		MenuItemSeparator separator_2 = new MenuItemSeparator();
 		menuBar.addSeparator(separator_2);
 		
-		MenuItem mntmEvents = new MenuItem("Events", false, (Command) null);
+		MenuItem mntmEvents = new MenuItem("Events", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new EventView());
+		        }
+		      });
 		menuBar.addItem(mntmEvents);
 		
 
