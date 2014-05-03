@@ -3,6 +3,8 @@ package edu.ycp.cs320.myYorkSpace.client;
 import java.util.ArrayList;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -17,6 +19,7 @@ import com.google.gwt.user.client.ui.ListBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
+
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.InlineLabel;
 
@@ -34,6 +37,7 @@ public class ProfileView extends Composite implements View{
 		
 		MenuItem mntmHome = new MenuItem("Home", false, (Command) null);
 		menuBar.addItem(mntmHome);
+		mntmHome.
 		
 		MenuItemSeparator separator = new MenuItemSeparator();
 		menuBar.addSeparator(separator);

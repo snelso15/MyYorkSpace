@@ -25,37 +25,43 @@ public class EventView extends Composite implements View {
 	private ListBox listBox;
 	private Event displayedEvent;
 	private Label lblEvent;
+	private Label label;
+	private Label lblName;
+	private Label lblDescription;
 
 	public EventView(){
 		events = new ArrayList<Event>() ;
 		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
-		panel.setSize("468px", "388px");
+		panel.setSize("576px", "578px");
 		
-		lblEvent = new Label("Event Description: ");
+		lblEvent = new Label("");
 		panel.add(lblEvent);
-		panel.setWidgetLeftWidth(lblEvent, 166.0, Unit.PX, 462.0, Unit.PX);
-		panel.setWidgetTopHeight(lblEvent, 116.0, Unit.PX, 61.0, Unit.PX);
+		panel.setWidgetLeftWidth(lblEvent, 203.0, Unit.PX, 462.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEvent, 249.0, Unit.PX, 28.0, Unit.PX);
 		
 		listBox = new ListBox();
 		panel.add(listBox);
-		panel.setWidgetLeftWidth(listBox, 27.0, Unit.PX, 133.0, Unit.PX);
-		panel.setWidgetTopHeight(listBox, 27.0, Unit.PX, 267.0, Unit.PX);
+		panel.setWidgetLeftWidth(listBox, 13.0, Unit.PX, 174.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox, 76.0, Unit.PX, 313.0, Unit.PX);
 		
 		GetEvents(Session.getInstance().getAccount());
 		
-		Button homeButton = new Button();
-		panel.add(homeButton);
-		homeButton.setText("HOME");
-		panel.setWidgetLeftWidth(homeButton, 27.0, Unit.PX, 65.0, Unit.PX);
-		panel.setWidgetTopHeight(homeButton, 299.0, Unit.PX, 28.0, Unit.PX);
-		homeButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				MyYorkSpaceWebApp.setView(new HomeView());
-			}
-		});
+		label = new Label("");
+		panel.add(label);
+		panel.setWidgetLeftWidth(label, 193.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(label, 159.0, Unit.PX, 28.0, Unit.PX);
+		
+		lblName = new Label("Event name:");
+		panel.add(lblName);
+		panel.setWidgetLeftWidth(lblName, 193.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(lblName, 125.0, Unit.PX, 28.0, Unit.PX);
+		
+		lblDescription = new Label("Description");
+		panel.add(lblDescription);
+		panel.setWidgetLeftWidth(lblDescription, 193.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(lblDescription, 214.0, Unit.PX, 28.0, Unit.PX);
 		
 	}
 	
