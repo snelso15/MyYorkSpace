@@ -16,6 +16,7 @@ import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
 public class FakeDatabase implements IDatabase {
+	
 	private ArrayList<Account> accountList;
 	private ArrayList<Post> postList;
 	private ArrayList<Message> messageList;
@@ -178,4 +179,9 @@ public class FakeDatabase implements IDatabase {
 	public ArrayList<Message> getMessage(String user) {
 		return findUserByUserName(user).getMessages();
 	}
+	
+	public ArrayList<Account> getAccountList() {
+		return accountList;
+	}
+
 }

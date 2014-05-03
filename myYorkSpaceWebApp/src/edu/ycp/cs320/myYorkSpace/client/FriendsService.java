@@ -11,5 +11,7 @@ import edu.ycp.cs320.myYorkSpace.shared.Account;
 @RemoteServiceRelativePath("friends")
 public interface FriendsService extends RemoteService {
 	public ArrayList<Account> getFriends(String email);
+	public ArrayList<Account> getUsersToAdd(String email);
+	public Account addUser(String email, Account newFriend);
 }
  
