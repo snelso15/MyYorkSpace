@@ -55,7 +55,7 @@ public class HomeView extends Composite implements View {
 		
 		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
 	        public void execute() {
-	        	MyYorkSpaceWebApp.setView(new HomeView());
+	        	MyYorkSpaceWebApp.setView(new MessageView());
 		        }
 		      });
 		menuBar.addItem(mntmMessage);

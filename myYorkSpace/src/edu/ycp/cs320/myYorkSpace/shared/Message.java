@@ -1,17 +1,23 @@
 package edu.ycp.cs320.myYorkSpace.shared;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
 	
 	private String fromUser;
 	private String toUser;
 	private String messText;
 	
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
 	public Message(String fromUser, String toUser, String messText)
 	{
 		this.fromUser = fromUser;
 		this.toUser = toUser;
 		this.messText = messText;
 	}
+	
 	
 	public void setFromUser(String fromUser)
 	{

@@ -66,7 +66,7 @@ public class EventView extends Composite implements View {
 		
 		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
 	        public void execute() {
-	        	MyYorkSpaceWebApp.setView(new HomeView());
+	        	MyYorkSpaceWebApp.setView(new MessageView());
 		        }
 		      });
 		menuBar.addItem(mntmMessage);
@@ -99,8 +99,6 @@ public class EventView extends Composite implements View {
 		panel.setWidgetLeftWidth(listBox, 10.0, Unit.PX, 174.0, Unit.PX);
 		panel.setWidgetTopHeight(listBox, 78.0, Unit.PX, 313.0, Unit.PX);
 		
-		GetEvents(Session.getInstance().getAccount());
-		
 		label = new Label("");
 		panel.add(label);
 		panel.setWidgetLeftWidth(label, 193.0, Unit.PX, 235.0, Unit.PX);
@@ -115,10 +113,9 @@ public class EventView extends Composite implements View {
 		panel.add(lblDescription);
 		panel.setWidgetLeftWidth(lblDescription, 193.0, Unit.PX, 235.0, Unit.PX);
 		panel.setWidgetTopHeight(lblDescription, 214.0, Unit.PX, 28.0, Unit.PX);
-		
 	}
 	
-	public void activate() {
+	public void impl() {
 
 		listBox.setVisibleItemCount(events.size());
 		for(int i = 0; i < events.size(); i++)
@@ -144,7 +141,7 @@ public class EventView extends Composite implements View {
 				} else {
 					// Successful
 					events = returnedList;
-					activate();
+					impl();
 				}
 			}
 			@Override
@@ -158,6 +155,11 @@ public class EventView extends Composite implements View {
 	@Override
 	public String isA() {
 		return "";
+	}
+
+	@Override
+	public void activate() {
+		GetEvents(Session.getInstance().getAccount());
 	}
 }
  

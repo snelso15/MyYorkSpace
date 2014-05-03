@@ -2,12 +2,16 @@ package edu.ycp.cs320.myYorkSpace.client;
 
 import java.util.ArrayList;
 
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.MenuItemSeparator;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -27,69 +31,78 @@ public class MessageView extends Composite implements View{
 		
 		
 		messages = new  ArrayList<Message>();
-		LayoutPanel layoutPanel = new LayoutPanel();
-		initWidget(layoutPanel);
-		layoutPanel.setSize("811px", "692px");
+		LayoutPanel panel = new LayoutPanel();
+		initWidget(panel);
+		panel.setSize("1000px", "1000px");
+		
+		
+		//////////////////////////////////////////////////
+		MenuBar menuBar = new MenuBar(false);
+		panel.add(menuBar);
+		menuBar.setWidth("1000px");
+		
+		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
+		public void execute() {
+		MyYorkSpaceWebApp.setView(new HomeView());
+		}
+		});
+		menuBar.addItem(mntmHome);
+		
+		MenuItemSeparator separator = new MenuItemSeparator();
+		menuBar.addSeparator(separator);
+		
+		MenuItem mntmFriends = new MenuItem("Friends", new Command() {
+		public void execute() {
+		MyYorkSpaceWebApp.setView(new FriendsView());
+		}
+		});
+		menuBar.addItem(mntmFriends);
+		
+		MenuItemSeparator separator_1 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_1);
+		
+		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
+		public void execute() {
+		MyYorkSpaceWebApp.setView(new MessageView());
+		}
+		});
+		menuBar.addItem(mntmMessage);
+		
+		MenuItemSeparator separator_2 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_2);
+		
+		MenuItem mntmEvents = new MenuItem("Events", false, new Command() {
+		public void execute() {
+		MyYorkSpaceWebApp.setView(new EventView());
+		}
+		});
+		menuBar.addItem(mntmEvents);
+		
+		
+		MenuItemSeparator separator_3 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_3);
+		/////////////////////////////////////////////////////
 		
 		listBox = new ListBox();
-		layoutPanel.add(listBox);
-		layoutPanel.setWidgetLeftWidth(listBox, 0.0, Unit.PX, 270.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(listBox, 114.0, Unit.PX, 578.0, Unit.PX);
+		panel.add(listBox);
+		panel.setWidgetLeftWidth(listBox, 0.0, Unit.PX, 270.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox, 114.0, Unit.PX, 450.0, Unit.PX);
 		listBox.setVisibleItemCount(5);
 		
-		Label lblMessages = new Label("Messages");
-		layoutPanel.add(lblMessages);
-		layoutPanel.setWidgetLeftWidth(lblMessages, 0.0, Unit.PX, 69.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblMessages, 76.0, Unit.PX, 18.0, Unit.PX);
-		
-		Button btnCreateMessage = new Button("Create Message");
-		layoutPanel.add(btnCreateMessage);
-		layoutPanel.setWidgetLeftWidth(btnCreateMessage, 629.0, Unit.PX, 119.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnCreateMessage, 625.0, Unit.PX, 30.0, Unit.PX);
-		
-		Label lblFrom = new Label("From:");
-		layoutPanel.add(lblFrom);
-		layoutPanel.setWidgetLeftWidth(lblFrom, 346.0, Unit.PX, 56.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblFrom, 147.0, Unit.PX, 18.0, Unit.PX);
-		
-		Button btnNewButton = new Button("Home Button");
-		btnNewButton.setText("Home");
-		layoutPanel.add(btnNewButton);
-		layoutPanel.setWidgetLeftWidth(btnNewButton, 0.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewButton, 0.0, Unit.PX, 30.0, Unit.PX);
-		
-		Button btnNewButton_1 = new Button("Friends button");
-		btnNewButton_1.setText("Friends");
-		layoutPanel.add(btnNewButton_1);
-		layoutPanel.setWidgetLeftWidth(btnNewButton_1, 87.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewButton_1, 0.0, Unit.PX, 30.0, Unit.PX);
-		
-		Button btnNewButton_2 = new Button("Events button");
-		btnNewButton_2.setText("Events");
-		layoutPanel.add(btnNewButton_2);
-		layoutPanel.setWidgetLeftWidth(btnNewButton_2, 174.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewButton_2, 0.0, Unit.PX, 30.0, Unit.PX);
-		
-		Button btnNewButton_3 = new Button("Message button");
-		btnNewButton_3.setText("Messages");
-		layoutPanel.add(btnNewButton_3);
-		layoutPanel.setWidgetLeftWidth(btnNewButton_3, 261.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnNewButton_3, 0.0, Unit.PX, 30.0, Unit.PX);
-		
 		messArea = new TextArea();
-		layoutPanel.add(messArea);
-		layoutPanel.setWidgetLeftWidth(messArea, 374.0, Unit.PX, 350.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(messArea, 273.0, Unit.PX, 165.0, Unit.PX);
+		panel.add(messArea);
+		panel.setWidgetLeftWidth(messArea, 374.0, Unit.PX, 350.0, Unit.PX);
+		panel.setWidgetTopHeight(messArea, 273.0, Unit.PX, 165.0, Unit.PX);
 		
 		Label lblNewLabel = new Label("Message:");
-		layoutPanel.add(lblNewLabel);
-		layoutPanel.setWidgetLeftWidth(lblNewLabel, 346.0, Unit.PX, 56.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblNewLabel, 226.0, Unit.PX, 18.0, Unit.PX);
+		panel.add(lblNewLabel);
+		panel.setWidgetLeftWidth(lblNewLabel, 346.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblNewLabel, 226.0, Unit.PX, 18.0, Unit.PX);
 		
 		lblFromUser = new Label("FromUser");
-		layoutPanel.add(lblFromUser);
-		layoutPanel.setWidgetLeftWidth(lblFromUser, 374.0, Unit.PX, 56.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblFromUser, 171.0, Unit.PX, 18.0, Unit.PX);
+		panel.add(lblFromUser);
+		panel.setWidgetLeftWidth(lblFromUser, 374.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblFromUser, 171.0, Unit.PX, 18.0, Unit.PX);
 		
 		
 		
@@ -101,7 +114,7 @@ public class MessageView extends Composite implements View{
 			@Override
 			public void onSuccess(ArrayList<Message> returnedList) {
 				if (returnedList == null) {
-					GWT.log("Host Account no longer exists");
+					GWT.log("no messages returned");
 				} else {
 					// Successful
 					messages = returnedList;
@@ -111,7 +124,7 @@ public class MessageView extends Composite implements View{
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO: display error msg
-				GWT.log("Login RPC call failed", caught);
+				GWT.log("message RPC call failed", caught);
 			}
 		});
 	}
@@ -138,7 +151,6 @@ public class MessageView extends Composite implements View{
 	@Override
 	public void activate() {
 		getMessages(Session.getInstance().getAccount().getUserName());
-		
 	}
 
 	@Override

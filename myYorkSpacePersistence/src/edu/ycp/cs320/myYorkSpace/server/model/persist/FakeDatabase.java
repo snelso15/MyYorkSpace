@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
@@ -71,8 +72,18 @@ public class FakeDatabase implements IDatabase {
 
 		//accountList.get(0).addFriend(account);
 		
+		Message message = new Message("sam", "prof", "HEYYYYYY");
+		Message message1 = new Message("sam", "prof", "HEYYYY");
+		Message message2 = new Message("sam", "prof", "HEYYY");
+		
+		ArrayList<Message> mes = new ArrayList<Message>();
+		mes.add(message);
+		mes.add(message1);
+		mes.add(message2);
+		
 		Account account3= new Account();
 		account3.setEmail("prof@ycp.edu");
+		account3.setMessages(mes);
 		Birthday birthday3 = new Birthday(11, 5, 1975);
 		account3.setBirthDate(birthday3.toString());
 		account3.setMajor("Mechanical Engineering");
@@ -90,6 +101,11 @@ public class FakeDatabase implements IDatabase {
 		//account3.addFriend(account);
 		//account3.addFriend(account1);
 		//account3.addFriend(account2);
+		
+		
+
+		
+		
 		
 
 		
@@ -119,9 +135,9 @@ public class FakeDatabase implements IDatabase {
 	}
 	
 	public Account findUserByUserName(String name) {
-		for (Account acct : accountList) {
-			if (acct.getUserName().equals(name)) {
-				return acct;
+		for (int i = 0; i<accountList.size(); i++) {
+			if (accountList.get(i).getUserName().equals(name)) {
+				return accountList.get(i);
 			}
 		}
 		return null;
@@ -160,7 +176,6 @@ public class FakeDatabase implements IDatabase {
 	}
 	
 	public ArrayList<Message> getMessage(String user) {
-		
 		return findUserByUserName(user).getMessages();
 	}
 }

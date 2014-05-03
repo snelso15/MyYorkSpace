@@ -44,7 +44,9 @@ public class FriendsView extends Composite implements View {
 				
 		MenuBar menuBar = new MenuBar(false);
 		panel.add(menuBar);
-		menuBar.setWidth("1000px");
+		panel.setWidgetLeftWidth(menuBar, 0.0, Unit.PX, 1002.0, Unit.PX);
+		panel.setWidgetTopHeight(menuBar, 0.0, Unit.PX, 1383.0, Unit.PX);
+		menuBar.setSize("1000px", "1500");
 	      
 		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
 	        public void execute() {
@@ -68,7 +70,7 @@ public class FriendsView extends Composite implements View {
 		
 		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
 	        public void execute() {
-	        	MyYorkSpaceWebApp.setView(new HomeView());
+	        	MyYorkSpaceWebApp.setView(new MessageView());
 		        }
 		      });
 		menuBar.addItem(mntmMessage);
@@ -101,8 +103,18 @@ public class FriendsView extends Composite implements View {
 		panel.setWidgetLeftWidth(lblNewLabel, 12.0, Unit.PX, 362.0, Unit.PX);
 		panel.setWidgetTopHeight(lblNewLabel, 113.0, Unit.PX, 18.0, Unit.PX);
 		
+		ListBox listBox_1 = new ListBox();
+		panel.add(listBox_1);
+		panel.setWidgetLeftWidth(listBox_1, 355.0, Unit.PX, 283.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox_1, 150.0, Unit.PX, 291.0, Unit.PX);
+		
+		Label lblAddFriendsHere = new Label("Add Friends here:");
+		panel.add(lblAddFriendsHere);
+		panel.setWidgetLeftWidth(lblAddFriendsHere, 355.0, Unit.PX, 362.0, Unit.PX);
+		panel.setWidgetTopHeight(lblAddFriendsHere, 113.0, Unit.PX, 18.0, Unit.PX);
+		
 		GetFriends(Session.getInstance().getAccount());
-
+		
 	}
 	@Override
 	public void activate() {

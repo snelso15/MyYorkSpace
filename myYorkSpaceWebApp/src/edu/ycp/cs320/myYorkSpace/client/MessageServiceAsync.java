@@ -11,5 +11,5 @@ import edu.ycp.cs320.myYorkSpace.shared.Message;
 public interface MessageServiceAsync {
 
 	public void getMessages(String user, AsyncCallback<ArrayList<Message>> asyncCallback);
-	public void addMessage(String fromUser, String toUser, String messText, AsyncCallback<Message> asyncCallback);
+	//public void addMessage(String fromUser, String toUser, String messText, AsyncCallback<Message> asyncCallback);
 }
