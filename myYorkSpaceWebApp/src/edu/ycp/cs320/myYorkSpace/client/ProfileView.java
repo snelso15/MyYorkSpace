@@ -33,7 +33,7 @@ public class ProfileView extends Composite implements View{
 		
 		MenuBar menuBar = new MenuBar(false);
 		flowPanel.add(menuBar);
-		menuBar.setWidth("276px");
+		menuBar.setWidth("500px");
 	      
 		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
 	        public void execute() {
@@ -76,6 +76,7 @@ public class ProfileView extends Composite implements View{
 		MenuItemSeparator separator_3 = new MenuItemSeparator();
 		menuBar.addSeparator(separator_3);
 		
+		
 		String userName = userProfileBeingShown.getUserName();
 
 		
@@ -104,6 +105,12 @@ public class ProfileView extends Composite implements View{
 	public void activate() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String isA() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

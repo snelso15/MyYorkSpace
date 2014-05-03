@@ -3,11 +3,15 @@ package edu.ycp.cs320.myYorkSpace.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.MenuItemSeparator;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -30,11 +34,60 @@ public class EventView extends Composite implements View {
 	private Label lblDescription;
 
 	public EventView(){
-		events = new ArrayList<Event>() ;
 		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
-		panel.setSize("576px", "578px");
+		panel.setSize("1000px", "1000px");
+		
+		//////////////////////////////////////////////////
+		MenuBar menuBar = new MenuBar(false);
+		panel.add(menuBar);
+		menuBar.setWidth("1000px");
+	      
+		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
+		menuBar.addItem(mntmHome);
+		
+		MenuItemSeparator separator = new MenuItemSeparator();
+		menuBar.addSeparator(separator);
+		
+		MenuItem mntmFriends = new MenuItem("Friends", new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new FriendsView());
+		        }
+		      });
+		menuBar.addItem(mntmFriends);
+		
+		MenuItemSeparator separator_1 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_1);
+		
+		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
+		menuBar.addItem(mntmMessage);
+		
+		MenuItemSeparator separator_2 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_2);
+		
+		MenuItem mntmEvents = new MenuItem("Events", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new EventView());
+		        }
+		      });
+		menuBar.addItem(mntmEvents);
+		
+
+		MenuItemSeparator separator_3 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_3);
+		/////////////////////////////////////////////////////
+		events = new ArrayList<Event>() ;
+		
+
 		
 		lblEvent = new Label("");
 		panel.add(lblEvent);
@@ -43,8 +96,8 @@ public class EventView extends Composite implements View {
 		
 		listBox = new ListBox();
 		panel.add(listBox);
-		panel.setWidgetLeftWidth(listBox, 13.0, Unit.PX, 174.0, Unit.PX);
-		panel.setWidgetTopHeight(listBox, 76.0, Unit.PX, 313.0, Unit.PX);
+		panel.setWidgetLeftWidth(listBox, 10.0, Unit.PX, 174.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox, 78.0, Unit.PX, 313.0, Unit.PX);
 		
 		GetEvents(Session.getInstance().getAccount());
 		
@@ -58,7 +111,7 @@ public class EventView extends Composite implements View {
 		panel.setWidgetLeftWidth(lblName, 193.0, Unit.PX, 235.0, Unit.PX);
 		panel.setWidgetTopHeight(lblName, 125.0, Unit.PX, 28.0, Unit.PX);
 		
-		lblDescription = new Label("Description");
+		lblDescription = new Label("Description:");
 		panel.add(lblDescription);
 		panel.setWidgetLeftWidth(lblDescription, 193.0, Unit.PX, 235.0, Unit.PX);
 		panel.setWidgetTopHeight(lblDescription, 214.0, Unit.PX, 28.0, Unit.PX);
@@ -100,6 +153,11 @@ public class EventView extends Composite implements View {
 				GWT.log("Login RPC call failed", caught);
 			}
 		});
+	}
+
+	@Override
+	public String isA() {
+		return "";
 	}
 }
  

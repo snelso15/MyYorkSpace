@@ -7,10 +7,14 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
+
+
+import com.google.gwt.user.client.ui.MenuItemSeparator;
 
 import edu.ycp.cs320.myYorkSpace.client.MyYorkSpaceWebApp;
 import edu.ycp.cs320.myYorkSpace.client.ProfileView;
@@ -20,6 +24,10 @@ import edu.ycp.cs320.myYorkSpace.client.View;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
 
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.Command;
+
 public class FriendsView extends Composite implements View {
 
 	private ArrayList<Account> friends;
@@ -27,15 +35,71 @@ public class FriendsView extends Composite implements View {
 
 
 	public FriendsView(){
-		friends = new ArrayList<Account>();
+		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
+		panel.setSize("1000px", "1000px");
 		
+		//////////////////////////////////////////////////
+				
+		MenuBar menuBar = new MenuBar(false);
+		panel.add(menuBar);
+		menuBar.setWidth("1000px");
+	      
+		MenuItem mntmHome = new MenuItem("Home", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
+		menuBar.addItem(mntmHome);
+		
+		MenuItemSeparator separator = new MenuItemSeparator();
+		menuBar.addSeparator(separator);
+		
+		MenuItem mntmFriends = new MenuItem("Friends", new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new FriendsView());
+		        }
+		      });
+		menuBar.addItem(mntmFriends);
+		
+		MenuItemSeparator separator_1 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_1);
+		
+		MenuItem mntmMessage = new MenuItem("Message", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new HomeView());
+		        }
+		      });
+		menuBar.addItem(mntmMessage);
+		
+		MenuItemSeparator separator_2 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_2);
+		
+		MenuItem mntmEvents = new MenuItem("Events", false, new Command() {
+	        public void execute() {
+	        	MyYorkSpaceWebApp.setView(new EventView());
+		        }
+		      });
+		menuBar.addItem(mntmEvents);
+		
+
+		MenuItemSeparator separator_3 = new MenuItemSeparator();
+		menuBar.addSeparator(separator_3);
+		
+		/////////////////////////////////////////////////////
+
+		friends = new ArrayList<Account>();
 		
 		listBox = new ListBox();
 		panel.add(listBox);
-		panel.setWidgetLeftWidth(listBox, 27.0, Unit.PX, 63.0, Unit.PX);
-		panel.setWidgetTopHeight(listBox, 24.0, Unit.PX, 100.0, Unit.PX);
+		panel.setWidgetLeftWidth(listBox, 12.0, Unit.PX, 283.0, Unit.PX);
+		panel.setWidgetTopHeight(listBox, 150.0, Unit.PX, 291.0, Unit.PX);
+		
+		Label lblNewLabel = new Label("Select the friend whose profile you wish to view:");
+		panel.add(lblNewLabel);
+		panel.setWidgetLeftWidth(lblNewLabel, 12.0, Unit.PX, 362.0, Unit.PX);
+		panel.setWidgetTopHeight(lblNewLabel, 113.0, Unit.PX, 18.0, Unit.PX);
 		
 		GetFriends(Session.getInstance().getAccount());
 
@@ -74,5 +138,9 @@ public class FriendsView extends Composite implements View {
 				GWT.log("Login RPC call failed", caught);
 			}
 		});
+	}
+	@Override
+	public String isA() {
+		return "";
 	}
 }

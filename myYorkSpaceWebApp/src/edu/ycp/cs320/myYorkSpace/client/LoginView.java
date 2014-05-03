@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+
 import com.google.gwt.user.client.ui.Label;
 
 public class LoginView extends Composite implements View {
@@ -107,5 +108,10 @@ public class LoginView extends Composite implements View {
 		else{
 			GWT.log("must enter values");
 		}
+	}
+
+	@Override
+	public String isA() {
+		return "LoginView";
 	}
 }

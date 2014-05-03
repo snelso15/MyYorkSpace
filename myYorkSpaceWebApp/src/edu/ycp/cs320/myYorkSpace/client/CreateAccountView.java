@@ -151,4 +151,9 @@ public class CreateAccountView extends Composite implements View {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String isA() {
+		return "CreateAccountView";
+	}
 }

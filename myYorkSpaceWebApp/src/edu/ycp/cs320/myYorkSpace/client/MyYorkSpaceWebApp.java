@@ -3,7 +3,11 @@ package edu.ycp.cs320.myYorkSpace.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.MenuItemSeparator;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
@@ -32,14 +36,15 @@ public class MyYorkSpaceWebApp implements EntryPoint {
 		if (currentView != null) {
 			RootLayoutPanel.get().remove(currentView);
 		}
-		
+
 		RootLayoutPanel.get().add(view);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		
 		view.activate();
-
+		
 		currentView = view;
+		
 	}
 	
 	
