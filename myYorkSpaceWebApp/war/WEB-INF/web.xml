@@ -26,6 +26,10 @@
     <servlet-name>FriendsServiceImpl</servlet-name>
     <servlet-class>edu.ycp.cs320.myYorkSpace.server.FriendsServiceImpl</servlet-class>
   </servlet>
+     <servlet>
+    <servlet-name>MessageServiceImpl</servlet-name>
+    <servlet-class>edu.ycp.cs320.myYorkSpace.server.MessageServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
@@ -46,6 +50,10 @@
     <servlet-mapping>
     <servlet-name>FriendsServiceImpl</servlet-name>
     <url-pattern>/myyorkspacewebapp/friends</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>MessageServiceImpl</servlet-name>
+    <url-pattern>/myyorkspacewebapp/message</url-pattern>
   </servlet-mapping>
   
   <!-- Servlet context listeners -->

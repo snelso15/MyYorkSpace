@@ -16,10 +16,11 @@ public class MessageServiceImpl extends RemoteServiceServlet implements MessageS
 		return controller.getUserMessages(user);
 	}
 
-	//@Override
-	//public Message addMessage(String fromUser, String toUser, String messText) {
-	//	SiteController controller = new SiteController();
-	//	return controller.addMessage(fromUser, toUser, messText);
-	//}
+	@Override
+	public Message addMessage(String fromUser, String toUser, String messText) {
+		SiteController controller = new SiteController();
+		return controller.addMessage(fromUser, toUser, messText);
+	}
+	
 
 }

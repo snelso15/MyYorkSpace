@@ -72,9 +72,9 @@ public class FakeDatabase implements IDatabase {
 
 		//accountList.get(0).addFriend(account);
 		
-		Message message = new Message("sam", "prof", "HEYYYYYY");
-		Message message1 = new Message("sam", "prof", "HEYYYY");
-		Message message2 = new Message("sam", "prof", "HEYYY");
+		Message message = new Message("sam", "prof", "HEYYYYYY, how are you today?!");
+		Message message1 = new Message("Bob", "prof", "HEYYYY... It's bob");
+		Message message2 = new Message("Chris", "prof", "HEYYY");
 		
 		ArrayList<Message> mes = new ArrayList<Message>();
 		mes.add(message);

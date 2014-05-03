@@ -11,6 +11,6 @@ import edu.ycp.cs320.myYorkSpace.shared.Message;
 public interface MessageService extends RemoteService{
 	
 	public ArrayList<Message> getMessages(String user);
-	//public Message addMessage(String fromUser, String toUser, String messText);
+	public Message addMessage(String fromUser, String toUser, String messText);
 
 }
