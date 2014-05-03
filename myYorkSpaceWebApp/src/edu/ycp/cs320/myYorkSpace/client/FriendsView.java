@@ -111,7 +111,22 @@ public class FriendsView extends Composite implements View {
 		Label lblAddFriendsHere = new Label("Add Friends here:");
 		panel.add(lblAddFriendsHere);
 		panel.setWidgetLeftWidth(lblAddFriendsHere, 355.0, Unit.PX, 362.0, Unit.PX);
-		panel.setWidgetTopHeight(lblAddFriendsHere, 113.0, Unit.PX, 18.0, Unit.PX);
+		panel.setWidgetTopHeight(lblAddFriendsHere, 82.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblAddThisUser = new Label("Add this User as friend?");
+		panel.add(lblAddThisUser);
+		panel.setWidgetLeftWidth(lblAddThisUser, 355.0, Unit.PX, 362.0, Unit.PX);
+		panel.setWidgetTopHeight(lblAddThisUser, 113.0, Unit.PX, 18.0, Unit.PX);
+		
+		Button btnAddFriend = new Button("ADD FRIEND");
+		panel.add(btnAddFriend);
+		panel.setWidgetLeftWidth(btnAddFriend, 512.0, Unit.PX, 126.0, Unit.PX);
+		panel.setWidgetTopHeight(btnAddFriend, 114.0, Unit.PX, 30.0, Unit.PX);
+		
+		Label label = new Label("");
+		panel.add(label);
+		panel.setWidgetLeftWidth(label, 365.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(label, 447.0, Unit.PX, 18.0, Unit.PX);
 		
 		GetFriends(Session.getInstance().getAccount());
 		
