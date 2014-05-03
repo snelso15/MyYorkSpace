@@ -154,19 +154,13 @@ public class FakeDatabase implements IDatabase {
 		return foundPosts;
 	}
 	
-	public void createMessage(Message messToAdd) {
-		messageList.add(messToAdd);
+	public void addMessage(Message messToAdd, String toUser) {
+		findUserByUserName(messToAdd.getFromUser()).getMessages().add(messToAdd);
+		findUserByUserName(toUser).getMessages().add(messToAdd);
 	}
 	
 	public ArrayList<Message> getMessage(String user) {
-		ArrayList<Message> foundMess = new ArrayList<Message>();
-		for(Message mess : messageList)
-		{
-			if(mess.getToUser().equals(user))
-			{
-				foundMess.add(mess);
-			}
-		}
-		return foundMess;
+		
+		return findUserByUserName(user).getMessages();
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import edu.ycp.cs320.myYorkSpace.server.model.persist.DatabaseProvider;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
+import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Site;
 
 public class SiteController {
@@ -26,6 +27,10 @@ public class SiteController {
 	}
 	public Account findUserByEmail(String email) {
 		return DatabaseProvider.getInstance().findUserByEmail(email);
+	}
+	
+	public Account findUserByUserName(String userName) {
+		return DatabaseProvider.getInstance().findUserByUserName(userName);
 	}
 	
 	public boolean verifyUser(Account user){
@@ -64,5 +69,17 @@ public class SiteController {
 	public ArrayList<Account> getFriendsOfUser(String email) {
 		ArrayList<Account> friends = findUserByEmail(email).getFriends();
 		return friends;
+	}
+	
+	public ArrayList<Message> getUserMessages(String user)
+	{
+		return DatabaseProvider.getInstance().getMessage(user);
+	}
+	
+	public Message addMessage(String fromUser, String toUser, String messText)
+	{
+		Message messToAdd = new Message(fromUser, toUser, messText);
+		DatabaseProvider.getInstance().addMessage(messToAdd, toUser);
+		return messToAdd;
 	}
 }

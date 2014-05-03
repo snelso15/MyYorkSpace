@@ -11,9 +11,9 @@ public interface IDatabase {
 	public void addUser(Account userToAdd);
 	public Account findUserByUserName(String name);
 	public Account findUserByEmail(String email);
-	public void createMessage(Message messToAdd);
 	public ArrayList<Message> getMessage(String user);
 	public void createPost(Post postToAdd);
 	public ArrayList<Post> getPosts(String postUser);
+	public void addMessage(Message messToAdd, String toUser);
 }
 

@@ -13,12 +13,14 @@ public class Account implements Serializable {
 	private ArrayList<Account> friends;
 	private ArrayList<Post> posts;
 	private ArrayList<Event> events;
+	private ArrayList<Message> messages;
 	
 	// Default constructor
 	public Account() {
 		 friends = new ArrayList<Account>();
 		 posts = new ArrayList<Post>();
 		 events= new ArrayList<Event>();
+		 messages = new ArrayList<Message>();
 	}
 	
 	//constructor
@@ -84,11 +86,17 @@ public class Account implements Serializable {
 	public ArrayList<Event> getEvents(){
 		return this.events;
 	}
-	
 	public void setEvents(ArrayList<Event> events){
 		this.events = events;
 	}
 	public void addEvent(Event event){
 		this.events.add(event);
+	}
+	
+	public void setMessages(ArrayList<Message> messages){
+		this.messages = messages;
+	}
+	public ArrayList<Message> getMessages(){
+		return this.messages;
 	}
 }
