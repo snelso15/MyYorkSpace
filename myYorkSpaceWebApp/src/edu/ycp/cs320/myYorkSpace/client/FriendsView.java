@@ -32,6 +32,12 @@ public class FriendsView extends Composite implements View {
 
 	private ArrayList<Account> friends;
 	private ListBox listBox;
+	private Label userSelectedLabel;
+	private Button btnAddFriend;
+	private Label AddThisUserlabel;
+	private ListBox listBox_1;
+	private ArrayList<Account> usersToAdd;
+	private Account UserSelected;
 
 
 	public FriendsView(){
@@ -92,6 +98,7 @@ public class FriendsView extends Composite implements View {
 		/////////////////////////////////////////////////////
 
 		friends = new ArrayList<Account>();
+		usersToAdd = new ArrayList<Account>();
 		
 		listBox = new ListBox();
 		panel.add(listBox);
@@ -103,7 +110,7 @@ public class FriendsView extends Composite implements View {
 		panel.setWidgetLeftWidth(lblNewLabel, 12.0, Unit.PX, 362.0, Unit.PX);
 		panel.setWidgetTopHeight(lblNewLabel, 113.0, Unit.PX, 18.0, Unit.PX);
 		
-		ListBox listBox_1 = new ListBox();
+		listBox_1 = new ListBox();
 		panel.add(listBox_1);
 		panel.setWidgetLeftWidth(listBox_1, 355.0, Unit.PX, 283.0, Unit.PX);
 		panel.setWidgetTopHeight(listBox_1, 150.0, Unit.PX, 291.0, Unit.PX);
@@ -113,26 +120,27 @@ public class FriendsView extends Composite implements View {
 		panel.setWidgetLeftWidth(lblAddFriendsHere, 355.0, Unit.PX, 362.0, Unit.PX);
 		panel.setWidgetTopHeight(lblAddFriendsHere, 82.0, Unit.PX, 18.0, Unit.PX);
 		
-		Label lblAddThisUser = new Label("Add this User as friend?");
-		panel.add(lblAddThisUser);
-		panel.setWidgetLeftWidth(lblAddThisUser, 355.0, Unit.PX, 362.0, Unit.PX);
-		panel.setWidgetTopHeight(lblAddThisUser, 113.0, Unit.PX, 18.0, Unit.PX);
+		AddThisUserlabel = new Label("Add this User as friend?");
+		AddThisUserlabel.setVisible(false);
+		panel.add(AddThisUserlabel);
+		panel.setWidgetLeftWidth(AddThisUserlabel, 355.0, Unit.PX, 362.0, Unit.PX);
+		panel.setWidgetTopHeight(AddThisUserlabel, 113.0, Unit.PX, 18.0, Unit.PX);
 		
-		Button btnAddFriend = new Button("ADD FRIEND");
+		btnAddFriend = new Button("ADD FRIEND");
+		btnAddFriend.setVisible(false);
 		panel.add(btnAddFriend);
 		panel.setWidgetLeftWidth(btnAddFriend, 512.0, Unit.PX, 126.0, Unit.PX);
 		panel.setWidgetTopHeight(btnAddFriend, 114.0, Unit.PX, 30.0, Unit.PX);
 		
-		Label label = new Label("");
-		panel.add(label);
-		panel.setWidgetLeftWidth(label, 365.0, Unit.PX, 56.0, Unit.PX);
-		panel.setWidgetTopHeight(label, 447.0, Unit.PX, 18.0, Unit.PX);
-		
-		GetFriends(Session.getInstance().getAccount());
-		
+		userSelectedLabel = new Label("");
+		userSelectedLabel.setVisible(false);
+		panel.add(userSelectedLabel);
+		panel.setWidgetLeftWidth(userSelectedLabel, 644.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(userSelectedLabel, 278.0, Unit.PX, 18.0, Unit.PX);
 	}
-	@Override
-	public void activate() {
+
+	
+	public void impl() {
 		listBox.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -146,6 +154,76 @@ public class FriendsView extends Composite implements View {
 		}
 	}
 	
+	public void impl2() {
+		listBox_1.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				userSelectedLabel.setVisible(true);
+				AddThisUserlabel.setVisible(true);
+				btnAddFriend.setVisible(true);
+				UserSelected = usersToAdd.get(listBox_1.getSelectedIndex());
+				userSelectedLabel.setText(UserSelected.getUserName());
+			}
+		});
+		btnAddFriend.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				if(UserSelected != null){
+					AddUser(UserSelected);
+				}
+			}
+		});
+		listBox_1.setVisibleItemCount(usersToAdd.size());
+		for(int i = 0; i < usersToAdd.size(); i++)
+		{
+			listBox_1.addItem(usersToAdd.get(i).getUserName());
+		}
+	}
+	
+	
+	protected void GetUsersToAdd(Account host) {
+		RPC.FriendsService.getUsersToAdd(host.getEmail(), new AsyncCallback<ArrayList<Account>>() {
+			@Override
+			public void onSuccess(ArrayList<Account> returnedList) {
+				if (returnedList == null) {
+					GWT.log("Host Account no longer exists");
+					
+				} else {
+					// Successful
+					usersToAdd = returnedList;
+					impl2();
+				}
+			}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO: display error msg
+				GWT.log("Login RPC call failed", caught);
+			}
+		});
+	}
+	
+	protected void AddUser(Account newFriend) {
+		RPC.FriendsService.addUser(Session.getInstance().getAccount().getEmail(), newFriend, new AsyncCallback<Account>() {
+			@Override
+			public void onSuccess(Account returned) {
+				if (returned == null) {
+					GWT.log("returned null, friend already exists?");
+					
+				} else {
+					// Successful
+					GWT.log("friend Added!");
+					Session.getInstance().getAccount().getFriends().add(returned);
+					MyYorkSpaceWebApp.setView(new FriendsView());
+				}
+			}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO: display error msg
+				GWT.log("Login RPC call failed", caught);
+			}
+		});
+	}
+	
 	protected void GetFriends(Account host) {
 		RPC.FriendsService.getFriends(host.getEmail(), new AsyncCallback<ArrayList<Account>>() {
 			@Override
@@ -156,7 +234,7 @@ public class FriendsView extends Composite implements View {
 				} else {
 					// Successful
 					friends = returnedList;
-					activate();
+					impl();
 				}
 			}
 			@Override
@@ -169,5 +247,12 @@ public class FriendsView extends Composite implements View {
 	@Override
 	public String isA() {
 		return "";
+	}
+
+
+	@Override
+	public void activate() {
+		GetFriends(Session.getInstance().getAccount());
+		GetUsersToAdd(Session.getInstance().getAccount());
 	}
 }

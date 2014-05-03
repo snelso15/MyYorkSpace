@@ -7,6 +7,7 @@ import edu.ycp.cs320.myYorkSpace.server.model.persist.DatabaseProvider;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
 import edu.ycp.cs320.myYorkSpace.shared.Message;
+import edu.ycp.cs320.myYorkSpace.shared.Post;
 import edu.ycp.cs320.myYorkSpace.shared.Site;
 
 public class SiteController {
@@ -70,6 +71,18 @@ public class SiteController {
 		ArrayList<Account> friends = findUserByEmail(email).getFriends();
 		return friends;
 	}
+	public ArrayList<Account> getNonFriendsOfUser(String email) {
+		Account thisUser = findUserByEmail(email);
+		ArrayList<Account> NonFriends = new ArrayList<Account>();
+		ArrayList<Account> allUsers = DatabaseProvider.getInstance().getAccountList();
+		for(Account user : allUsers){
+			if (!thisUser.getFriends().contains(user)){
+				NonFriends.add(user);
+			}
+		}
+		
+		return NonFriends;
+	}
 	
 	public ArrayList<Message> getUserMessages(String user)
 	{
@@ -81,5 +94,16 @@ public class SiteController {
 		Message messToAdd = new Message(fromUser, toUser, messText);
 		DatabaseProvider.getInstance().addMessage(messToAdd, toUser);
 		return messToAdd;
+	}
+
+	public Account addFriend(String email, Account newFriend) {
+		if(!findUserByEmail(email).getFriends().contains(newFriend)){
+			findUserByEmail(email).addFriend(newFriend);
+			return newFriend;
+		}
+		else{
+			System.out.println("friend already exists");
+			return null;
+		}
 	}
 }

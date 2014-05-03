@@ -18,6 +18,17 @@ public class FriendsServiceImpl extends RemoteServiceServlet implements
 		SiteController controller = new SiteController();
 		return controller.getFriendsOfUser(email);
 	}
-
+	
+	@Override
+	public ArrayList<Account> getUsersToAdd(String email) {
+		SiteController controller = new SiteController();
+		return controller.getNonFriendsOfUser(email);
+	}
+	
+	@Override
+	public Account addUser(String email, Account newFriend){
+		SiteController controller = new SiteController();
+		return controller.addFriend(email, newFriend);
+	}
 }
  
