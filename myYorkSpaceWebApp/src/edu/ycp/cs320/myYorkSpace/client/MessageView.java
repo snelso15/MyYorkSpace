@@ -181,7 +181,7 @@ public class MessageView extends Composite implements View{
 				} else {
 					// Successful
 					messages = returnedList;
-					impl();
+					GetFriends(Session.getInstance().getAccount());
 				}
 			}
 			@Override
@@ -201,16 +201,13 @@ public class MessageView extends Composite implements View{
 					
 				}
 				else {
-					// Successful
+					MyYorkSpaceWebApp.setView(new MessageView());
 				}
 			}
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				// TODO: display error msg
 				GWT.log("add message RPC call failed", caught);
 			}
-				
 		});
 	}
 	
@@ -224,6 +221,7 @@ public class MessageView extends Composite implements View{
 				} else {
 					// Successful
 					friends = returnedList;
+					impl();
 				}
 			}
 			@Override
@@ -328,10 +326,7 @@ public class MessageView extends Composite implements View{
 
 	@Override
 	public void activate() {
-		GetFriends(Session.getInstance().getAccount());
 		getMessages(Session.getInstance().getAccount().getUserName());
-		
-		
 	}
 
 	@Override

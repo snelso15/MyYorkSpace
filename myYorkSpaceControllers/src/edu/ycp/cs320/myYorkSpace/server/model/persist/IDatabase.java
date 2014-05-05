@@ -14,7 +14,7 @@ public interface IDatabase {
 	public ArrayList<Message> getMessage(String user);
 	public void createPost(Post postToAdd);
 	public ArrayList<Post> getPosts(String postUser);
-	public void addMessage(Message messToAdd, String toUser);
+	public Message addMessage(Message messToAdd, String toUser);
 	public ArrayList<Account> getAccountList();
 }
 

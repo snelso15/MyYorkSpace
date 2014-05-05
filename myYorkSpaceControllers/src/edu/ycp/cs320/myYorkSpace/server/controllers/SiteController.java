@@ -92,8 +92,7 @@ public class SiteController {
 	public Message addMessage(String fromUser, String toUser, String messText)
 	{
 		Message messToAdd = new Message(fromUser, toUser, messText);
-		DatabaseProvider.getInstance().addMessage(messToAdd, toUser);
-		return messToAdd;
+		return DatabaseProvider.getInstance().addMessage(messToAdd, toUser);
 	}
 
 	public Account addFriend(String email, Account newFriend) {

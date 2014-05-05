@@ -171,9 +171,10 @@ public class FakeDatabase implements IDatabase {
 		return foundPosts;
 	}
 	
-	public void addMessage(Message messToAdd, String toUser) {
+	public Message addMessage(Message messToAdd, String toUser) {
 		findUserByUserName(messToAdd.getFromUser()).getMessages().add(messToAdd);
 		findUserByUserName(toUser).getMessages().add(messToAdd);
+		return messToAdd;
 	}
 	
 	public ArrayList<Message> getMessage(String user) {
