@@ -38,6 +38,7 @@ public class MessageView extends Composite implements View{
 	private Button btnNewMessage;
 	private Button btnSend;
 	private ListBox comboBox;
+	int reply = 0;
 	
 	public MessageView() {
 		
@@ -279,7 +280,7 @@ public class MessageView extends Composite implements View{
 				btnReply.setVisible(false);
 				btnSend.setVisible(true);
 				comboBox.setVisible(false);
-				
+				reply = 1;
 			}
 		});
 		
@@ -296,6 +297,7 @@ public class MessageView extends Composite implements View{
 				btnReply.setVisible(false);
 				btnSend.setVisible(true);
 				comboBox.setVisible(true);
+				reply = 0;
 				
 			}
 		});
@@ -317,7 +319,15 @@ public class MessageView extends Composite implements View{
 				
 				if(messArea.getText() != null)
 				{
-					addMessage(Session.getInstance().getAccount().getUserName(), friends.get(comboBox.getSelectedIndex()).getUserName(), messArea.getText());
+					if(reply == 0)
+					{
+						addMessage(Session.getInstance().getAccount().getUserName(), friends.get(comboBox.getSelectedIndex()).getUserName(), messArea.getText());
+					}
+					else
+					{
+						addMessage(Session.getInstance().getAccount().getUserName(), lblTouser.getText(), messArea.getText());
+					}
+					
 				}
 				
 			}
