@@ -152,10 +152,7 @@ public class EventView extends Composite implements View {
 		});
 	}
 
-	@Override
-	public String isA() {
-		return "";
-	}
+
 
 	@Override
 	public void activate() {

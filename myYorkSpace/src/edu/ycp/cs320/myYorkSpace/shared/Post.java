@@ -8,6 +8,10 @@ public class Post implements Serializable {
 	private String postText;
 	//private Attachment postAttach;
 	
+	public Post(){
+		
+	}
+	
 	public Post(String postUser, String postText) //Attachment postAttach)
 	{
 		this.postUser = postUser;

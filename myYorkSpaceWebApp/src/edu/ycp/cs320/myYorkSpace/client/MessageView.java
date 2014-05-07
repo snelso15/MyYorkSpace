@@ -329,9 +329,5 @@ public class MessageView extends Composite implements View{
 		getMessages(Session.getInstance().getAccount().getUserName());
 	}
 
-	@Override
-	public String isA() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

@@ -89,8 +89,5 @@ public class HomeView extends Composite implements View {
 		
 		
 	}
-	@Override
-	public String isA() {
-		return "";
-	}
+
 }

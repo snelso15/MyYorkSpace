@@ -152,8 +152,5 @@ public class CreateAccountView extends Composite implements View {
 		
 	}
 
-	@Override
-	public String isA() {
-		return "CreateAccountView";
-	}
+
 }

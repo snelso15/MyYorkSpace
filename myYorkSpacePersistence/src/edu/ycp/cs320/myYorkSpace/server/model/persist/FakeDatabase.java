@@ -59,6 +59,8 @@ public class FakeDatabase implements IDatabase {
 		account1.setUserName("Alec");
 		account1.setEvents(eventList);
 		
+		accountList.add(account1);
+		
 		Account account2= new Account();
 		account2.setEmail("sammy@ycp.edu");
 		Birthday birthday2 = new Birthday(12, 7, 1993);
@@ -82,6 +84,14 @@ public class FakeDatabase implements IDatabase {
 		mes.add(message1);
 		mes.add(message2);
 		
+		ArrayList<Post> p = new ArrayList<Post>();
+		Post p1 = new Post("prof", "Hey everybody!");
+		Post p2 = new Post("prof", "Im hungry!");
+		Post p3 = new Post("prof", "Who's watching this game!");
+		p.add(p1);
+		p.add(p2);
+		p.add(p3);
+		
 		Account account3= new Account();
 		account3.setEmail("prof@ycp.edu");
 		account3.setMessages(mes);
@@ -90,6 +100,7 @@ public class FakeDatabase implements IDatabase {
 		account3.setMajor("Mechanical Engineering");
 		account3.setPassword("prof");
 		account3.setUserName("Prof");
+		account3.setPosts(p);
 		
 		
 		ArrayList<Account> frnds = new ArrayList<Account>();
@@ -99,15 +110,6 @@ public class FakeDatabase implements IDatabase {
 		
 		
 		account3.setFriends(frnds);
-		//account3.addFriend(account);
-		//account3.addFriend(account1);
-		//account3.addFriend(account2);
-		
-		
-
-		
-		
-		
 
 		
 		accountList.add(account3);
@@ -184,5 +186,4 @@ public class FakeDatabase implements IDatabase {
 	public ArrayList<Account> getAccountList() {
 		return accountList;
 	}
-
 }

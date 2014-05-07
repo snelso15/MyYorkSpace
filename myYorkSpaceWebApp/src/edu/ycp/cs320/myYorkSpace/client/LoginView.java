@@ -110,8 +110,5 @@ public class LoginView extends Composite implements View {
 		}
 	}
 
-	@Override
-	public String isA() {
-		return "LoginView";
-	}
+
 }
