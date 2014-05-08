@@ -12,6 +12,6 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 public interface EventService extends RemoteService {
 	public ArrayList<Event> getEvents(String email);
 
-	public Event addEvent(String name, String description, String time);
+	public Event addEvent(String name, String description, String time, ArrayList<String> invited);
 }
  

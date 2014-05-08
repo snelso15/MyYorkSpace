@@ -18,9 +18,9 @@ public class EventServiceImpl extends RemoteServiceServlet implements
 		return controller.getEventsForUser(email);
 	}
 	@Override
-	public Event addEvent(String name, String description, String time){
+	public Event addEvent(String name, String description, String time, ArrayList<String> invited){
 		SiteController controller = new SiteController();
-		return controller.addEvent(name, description, time, null );
+		return controller.addEvent(name, description, time, invited);
 	}
 
 }

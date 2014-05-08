@@ -139,7 +139,6 @@ public class FriendsView extends Composite implements View {
 		panel.setWidgetTopHeight(userSelectedLabel, 278.0, Unit.PX, 18.0, Unit.PX);
 	}
 
-	
 	public void impl() {
 		listBox.addClickHandler(new ClickHandler() {
 			@Override

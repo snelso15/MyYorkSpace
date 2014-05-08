@@ -33,8 +33,13 @@ public class EventView extends Composite implements View {
 	private Label label;
 	private Label lblName;
 	private Label lblDescription;
+	private String name;
+	private String description;
+	private String time;
+	private ArrayList<String> invited;
 
 	public EventView(){
+		
 		
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
@@ -150,7 +155,26 @@ public class EventView extends Composite implements View {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO: display error msg
-				GWT.log("Login RPC call failed", caught);
+				GWT.log("get events RPC call failed", caught);
+			}
+		});
+	}
+	
+	protected void addEvent() {
+		RPC.EventService.addEvent(name, description, time, invited, new AsyncCallback<Event>() {
+			@Override
+			public void onSuccess(Event returnedEvent) {
+				if (returnedEvent == null) {
+					GWT.log("returned null?");
+				} else {
+					// Successful
+					MyYorkSpaceWebApp.setView(new EventView());
+				}
+			}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO: display error msg
+				GWT.log("add event RPC call failed", caught);
 			}
 		});
 	}
