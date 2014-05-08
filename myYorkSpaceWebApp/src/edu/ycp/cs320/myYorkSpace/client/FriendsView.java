@@ -244,10 +244,7 @@ public class FriendsView extends Composite implements View {
 			}
 		});
 	}
-	@Override
-	public String isA() {
-		return "";
-	}
+
 
 
 	@Override
