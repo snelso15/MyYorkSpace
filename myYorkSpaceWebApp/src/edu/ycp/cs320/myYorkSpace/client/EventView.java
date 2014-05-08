@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MenuItemSeparator;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -28,7 +29,7 @@ public class EventView extends Composite implements View {
 	private ArrayList<Event> events;
 	private ListBox listBox;
 	private Event displayedEvent;
-	private Label lblEvent;
+	private TextArea lblEvent;
 	private Label label;
 	private Label lblName;
 	private Label lblDescription;
@@ -89,10 +90,11 @@ public class EventView extends Composite implements View {
 		
 
 		
-		lblEvent = new Label("");
+		lblEvent = new TextArea();
+		lblEvent.setReadOnly(true);
 		panel.add(lblEvent);
-		panel.setWidgetLeftWidth(lblEvent, 203.0, Unit.PX, 462.0, Unit.PX);
-		panel.setWidgetTopHeight(lblEvent, 249.0, Unit.PX, 28.0, Unit.PX);
+		panel.setWidgetLeftWidth(lblEvent, 203.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEvent, 249.0, Unit.PX, 99.0, Unit.PX);
 		
 		listBox = new ListBox();
 		panel.add(listBox);
@@ -127,6 +129,7 @@ public class EventView extends Composite implements View {
 			public void onClick(ClickEvent event) {
 				displayedEvent =  events.get(listBox.getSelectedIndex());
 				lblEvent.setText(displayedEvent.getEventDesc());
+				label.setText(displayedEvent.getEventName());
 			}
 		});
 	}
