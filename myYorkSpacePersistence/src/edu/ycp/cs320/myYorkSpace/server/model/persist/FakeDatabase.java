@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
@@ -183,6 +184,15 @@ public class FakeDatabase implements IDatabase {
 	
 	public ArrayList<Account> getAccountList() {
 		return accountList;
+	}
+	
+	public Event addEvent(Event eventToAdd) {
+		ArrayList<String> invited = eventToAdd.getInvited();
+		for(int i = 0; i < invited.size(); i++)
+		{
+			findUserByUserName(invited.get(i)).getEvents().add(eventToAdd);
+		}
+		return eventToAdd;
 	}
 
 }
