@@ -5,6 +5,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/myYorkSpace"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/myYorkSpaceControllers"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/myYorkSpacePersistence"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/gwt-2.5.1"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

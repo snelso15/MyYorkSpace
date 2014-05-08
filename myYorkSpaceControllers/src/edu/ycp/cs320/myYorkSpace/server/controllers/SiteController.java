@@ -66,6 +66,12 @@ public class SiteController {
 		}
 		return listOfEvents;
 	}
+	
+	public Event addEvent(String eventName, String eventDesc, String eventTime, ArrayList<String> invited)
+	{
+		Event eventToAdd = new Event(eventName, eventDesc, eventTime, invited);
+		return DatabaseProvider.getInstance().addEvent(eventToAdd);
+	}
 
 	public ArrayList<Account> getFriendsOfUser(String email) {
 		ArrayList<Account> friends = findUserByEmail(email).getFriends();
