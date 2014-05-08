@@ -11,5 +11,7 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 @RemoteServiceRelativePath("event")
 public interface EventService extends RemoteService {
 	public ArrayList<Event> getEvents(String email);
+
+	public Event addEvent(String name, String description, String time);
 }
  

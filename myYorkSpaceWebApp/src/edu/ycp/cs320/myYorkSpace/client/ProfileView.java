@@ -168,7 +168,7 @@ public class ProfileView extends Composite implements View{
 				}
 			}
 		});
-	}
+	} 
 
 	@Override
 	public void activate() {

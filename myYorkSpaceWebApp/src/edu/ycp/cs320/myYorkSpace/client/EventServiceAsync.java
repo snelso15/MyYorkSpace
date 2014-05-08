@@ -13,4 +13,6 @@ import edu.ycp.cs320.myYorkSpace.shared.Event;
 @RemoteServiceRelativePath("event")
 public interface EventServiceAsync {
 	public void getEvents(String email, AsyncCallback<ArrayList<Event>> asyncCallback);
+
+	void addEvent(String name, String description, String time, AsyncCallback<Event> callback);
 }

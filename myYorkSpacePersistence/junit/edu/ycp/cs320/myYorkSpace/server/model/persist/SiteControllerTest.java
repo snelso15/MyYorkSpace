@@ -1,7 +1,5 @@
 package edu.ycp.cs320.myYorkSpace.server.model.persist;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

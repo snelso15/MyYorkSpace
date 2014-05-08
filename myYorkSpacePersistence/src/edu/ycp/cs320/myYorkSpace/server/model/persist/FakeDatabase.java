@@ -1,15 +1,7 @@
 package edu.ycp.cs320.myYorkSpace.server.model.persist;
 
 import java.util.ArrayList;
-import java.util.List;
-
-
-
-
-
-
 import edu.ycp.cs320.myYorkSpace.shared.Account;
-import edu.ycp.cs320.myYorkSpace.shared.Attachment;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
 import edu.ycp.cs320.myYorkSpace.shared.Message;
@@ -121,10 +113,12 @@ public class FakeDatabase implements IDatabase {
 
 	}
 	
+	@Override
 	public void addUser(Account userToAdd){
 			accountList.add(userToAdd);
 	}
 	
+	@Override
 	public Account logIn(String email, String password) {
 		Account thisUser = findUserByEmail(email);
 		if(thisUser==null){
@@ -137,6 +131,7 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 	
+	@Override
 	public Account findUserByUserName(String name) {
 		for (int i = 0; i<accountList.size(); i++) {
 			if (accountList.get(i).getUserName().equals(name)) {
@@ -146,6 +141,7 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 	
+	@Override
 	public Account findUserByEmail(String email) {
 
 		for (int i = 0; i<accountList.size(); i++) {
@@ -157,10 +153,12 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 	
+	@Override
 	public void createPost(Post postToAdd) {
 		postList.add(postToAdd);
 	}
 	
+	@Override
 	public ArrayList<Post> getPosts(String postUser) {
 		ArrayList<Post> foundPosts = new ArrayList<Post>();
 		for(Post post : postList)
@@ -173,16 +171,19 @@ public class FakeDatabase implements IDatabase {
 		return foundPosts;
 	}
 	
+	@Override
 	public Message addMessage(Message messToAdd, String toUser) {
 		findUserByUserName(messToAdd.getFromUser()).getMessages().add(messToAdd);
 		findUserByUserName(toUser).getMessages().add(messToAdd);
 		return messToAdd;
 	}
 	
+	@Override
 	public ArrayList<Message> getMessage(String user) {
 		return findUserByUserName(user).getMessages();
 	}
 	
+	@Override
 	public ArrayList<Account> getAccountList() {
 		return accountList;
 	}
