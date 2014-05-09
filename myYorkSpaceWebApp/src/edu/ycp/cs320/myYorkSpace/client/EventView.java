@@ -37,6 +37,7 @@ public class EventView extends Composite implements View {
 	private String description;
 	private String time;
 	private ArrayList<String> invited;
+	private Label dateLabel;
 
 	public EventView(){
 		
@@ -93,13 +94,11 @@ public class EventView extends Composite implements View {
 		/////////////////////////////////////////////////////
 		events = new ArrayList<Event>() ;
 		
-
-		
 		lblEvent = new TextArea();
 		lblEvent.setReadOnly(true);
 		panel.add(lblEvent);
-		panel.setWidgetLeftWidth(lblEvent, 203.0, Unit.PX, 235.0, Unit.PX);
-		panel.setWidgetTopHeight(lblEvent, 249.0, Unit.PX, 99.0, Unit.PX);
+		panel.setWidgetLeftWidth(lblEvent, 193.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEvent, 211.0, Unit.PX, 99.0, Unit.PX);
 		
 		listBox = new ListBox();
 		panel.add(listBox);
@@ -109,7 +108,7 @@ public class EventView extends Composite implements View {
 		label = new Label("");
 		panel.add(label);
 		panel.setWidgetLeftWidth(label, 193.0, Unit.PX, 235.0, Unit.PX);
-		panel.setWidgetTopHeight(label, 159.0, Unit.PX, 28.0, Unit.PX);
+		panel.setWidgetTopHeight(label, 143.0, Unit.PX, 28.0, Unit.PX);
 		
 		lblName = new Label("Event name:");
 		panel.add(lblName);
@@ -119,11 +118,39 @@ public class EventView extends Composite implements View {
 		lblDescription = new Label("Description:");
 		panel.add(lblDescription);
 		panel.setWidgetLeftWidth(lblDescription, 193.0, Unit.PX, 235.0, Unit.PX);
-		panel.setWidgetTopHeight(lblDescription, 214.0, Unit.PX, 28.0, Unit.PX);
+		panel.setWidgetTopHeight(lblDescription, 177.0, Unit.PX, 28.0, Unit.PX);
+		
+		Label lblEventsYouAre = new Label("Events you are invited to:");
+		panel.add(lblEventsYouAre);
+		panel.setWidgetLeftWidth(lblEventsYouAre, 13.0, Unit.PX, 235.0, Unit.PX);
+		panel.setWidgetTopHeight(lblEventsYouAre, 57.0, Unit.PX, 28.0, Unit.PX);
+		
+		Button btnNewButton = new Button("New button");
+		btnNewButton.setText("Create New Event");
+		panel.add(btnNewButton);
+		panel.setWidgetLeftWidth(btnNewButton, 10.0, Unit.PX, 174.0, Unit.PX);
+		panel.setWidgetTopHeight(btnNewButton, 428.0, Unit.PX, 37.0, Unit.PX);
+		
+		Label lblDate = new Label("Date:");
+		panel.add(lblDate);
+		panel.setWidgetLeftWidth(lblDate, 193.0, Unit.PX, 56.0, Unit.PX);
+		panel.setWidgetTopHeight(lblDate, 316.0, Unit.PX, 18.0, Unit.PX);
+		
+		dateLabel = new Label("");
+		panel.add(dateLabel);
+		panel.setWidgetLeftWidth(dateLabel, 193.0, Unit.PX, 153.0, Unit.PX);
+		panel.setWidgetTopHeight(dateLabel, 357.0, Unit.PX, 18.0, Unit.PX);
+		
+		
+		btnNewButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				MyYorkSpaceWebApp.setView(new CreateEventView ());
+			}
+		});
 	}
 	
 	public void impl() {
-
 		listBox.setVisibleItemCount(events.size());
 		for(int i = 0; i < events.size(); i++)
 		{
@@ -135,10 +162,10 @@ public class EventView extends Composite implements View {
 				displayedEvent =  events.get(listBox.getSelectedIndex());
 				lblEvent.setText(displayedEvent.getEventDesc());
 				label.setText(displayedEvent.getEventName());
+				dateLabel.setText(displayedEvent.getEventTime());
 			}
 		});
 	}
-
 	
 	protected void GetEvents(Account host) {
 		RPC.EventService.getEvents(host.getEmail(), new AsyncCallback<ArrayList<Event>>() {
@@ -160,26 +187,6 @@ public class EventView extends Composite implements View {
 		});
 	}
 	
-	protected void addEvent() {
-		RPC.EventService.addEvent(name, description, time, invited, new AsyncCallback<Event>() {
-			@Override
-			public void onSuccess(Event returnedEvent) {
-				if (returnedEvent == null) {
-					GWT.log("returned null?");
-				} else {
-					// Successful
-					MyYorkSpaceWebApp.setView(new EventView());
-				}
-			}
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO: display error msg
-				GWT.log("add event RPC call failed", caught);
-			}
-		});
-	}
-
-
 
 	@Override
 	public void activate() {

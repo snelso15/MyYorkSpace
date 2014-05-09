@@ -11,4 +11,5 @@ public interface ProfileServiceAsync {
 	
 	public void getActiveUserPosts(Account user, AsyncCallback<ArrayList<Post>> callback);
 	public void getUserName(Account user, AsyncCallback<String> callback);
+	public void addPostToUser(Account userProfileBeingShown, String userName, String text, AsyncCallback<Account> asyncCallback);
 }

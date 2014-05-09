@@ -15,4 +15,6 @@ public class RPC {
 			GWT.create(FriendsService.class);
 	public static final MessageServiceAsync MessageService =
 			GWT.create(MessageService.class);
+	public static final ProfileServiceAsync ProfileService =
+			GWT.create(ProfileService.class);
 }

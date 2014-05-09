@@ -240,7 +240,7 @@ public class MessageView extends Composite implements View{
 		listBox.setVisibleItemCount(messages.size());
 		for(int i = 0; i < messages.size(); i++)
 		{
-			listBox.addItem(messages.get(i).getMessText());
+			listBox.addItem(messages.get(i).getFromUser()+": "+messages.get(i).getMessText());
 		}
 		comboBox.setVisibleItemCount(friends.size());
 		for(int i = 0; i < friends.size(); i++)

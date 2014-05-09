@@ -57,14 +57,8 @@ public class SiteController {
 	}
 
 	public ArrayList<Event> getEventsForUser(String email) {
-		ArrayList<Account> friends = findUserByEmail(email).getFriends();
-		ArrayList<Event> userEvents = new ArrayList<Event>();
-		ArrayList<Event> listOfEvents = new ArrayList<Event>();
-		for (int i = 0; i<friends.size(); i++){
-			userEvents = friends.get(i).getEvents();
-			listOfEvents.addAll(userEvents);
-		}
-		return listOfEvents;
+		
+		return DatabaseProvider.getInstance().getEventsForUser(email);
 	}
 	
 	public Event addEvent(String eventName, String eventDesc, String eventTime, ArrayList<String> invited)
@@ -86,7 +80,6 @@ public class SiteController {
 				NonFriends.add(user);
 			}
 		}
-		
 		return NonFriends;
 	}
 	
@@ -110,5 +103,9 @@ public class SiteController {
 			System.out.println("friend already exists");
 			return null;
 		}
+	}
+	public Account addPostToUser(Account userProfileBeingShown, String fromUser, String text) {
+		Post post = new Post(userProfileBeingShown.getUserName(), text, fromUser);
+		return DatabaseProvider.getInstance().addPostToUser(userProfileBeingShown, post);
 	}
 }

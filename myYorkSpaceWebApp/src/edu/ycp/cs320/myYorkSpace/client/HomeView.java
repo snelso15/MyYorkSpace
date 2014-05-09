@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import com.google.gwt.user.client.ui.Image;
 
 public class HomeView extends Composite implements View {
 	
@@ -83,11 +84,11 @@ public class HomeView extends Composite implements View {
 		panel.setWidgetLeftWidth(lblNewLabel, 12.0, Unit.PX, 330.0, Unit.PX);
 		panel.setWidgetTopHeight(lblNewLabel, 100.0, Unit.PX, 18.0, Unit.PX);
 		
+		
 	}
 	@Override
 	public void activate() {
 		
 		
 	}
-
 }

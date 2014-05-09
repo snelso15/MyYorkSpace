@@ -14,6 +14,8 @@ public interface ProfileService extends RemoteService{
 
 	public ArrayList<Post> getActiveUserPosts(Account user);
 	public String getUserName(Account user);
+	public Account addPostToUser(Account userProfileBeingShown, String userName,
+			String text);
 
 	
 }

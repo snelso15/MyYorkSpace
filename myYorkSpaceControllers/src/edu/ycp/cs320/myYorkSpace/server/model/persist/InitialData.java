@@ -5,52 +5,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import edu.ycp.cs320.booksdb.model.Author;
-import edu.ycp.cs320.booksdb.model.Book;
+import edu.ycp.cs320.myYorkSpace.shared.Account;
 
 public class InitialData {
-	public static List<Author> getAuthors() throws IOException {
-		List<Author> authorList = new ArrayList<Author>();
-		ReadCSV readAuthors = new ReadCSV("authors.csv");
+	///////////////////////////////////////////////////////////////
+	//Couldnt figure out how to use csv file to populate database//
+	///////////////////////////////////////////////////////////////
+	public static List<Account> getAccounts() throws IOException {
+		List<Account> AccountList = new ArrayList<Account>();
+		ReadCSV readAccounts = new ReadCSV("Accounts.csv");
 		try {
 			while (true) {
-				List<String> tuple = readAuthors.next();
+				List<String> tuple = readAccounts.next();
 				if (tuple == null) {
 					break;
 				}
-				Iterator<String> i = tuple.iterator();
-				Author author = new Author();
-				author.setId(Integer.parseInt(i.next()));
-				author.setLastname(i.next());
-				author.setFirstname(i.next());
-				authorList.add(author);
 			}
-			return authorList;
+			return AccountList;
 		} finally {
-			readAuthors.close();
-		}
-	}
-	
-	public static List<Book> getBooks() throws IOException {
-		List<Book> bookList = new ArrayList<Book>();
-		ReadCSV readBooks = new ReadCSV("books.csv");
-		try {
-			while (true) {
-				List<String> tuple = readBooks.next();
-				if (tuple == null) {
-					break;
-				}
-				Iterator<String> i = tuple.iterator();
-				Book book = new Book();
-				book.setId(Integer.parseInt(i.next()));
-				book.setAuthorId(Integer.parseInt(i.next()));
-				book.setTitle(i.next());
-				book.setIsbn(i.next());
-				bookList.add(book);
-			}
-			return bookList;
-		} finally {
-			readBooks.close();
+			readAccounts.close();
 		}
 	}
 }

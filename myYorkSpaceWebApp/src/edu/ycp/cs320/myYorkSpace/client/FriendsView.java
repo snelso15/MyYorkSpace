@@ -186,7 +186,6 @@ public class FriendsView extends Composite implements View {
 			public void onSuccess(ArrayList<Account> returnedList) {
 				if (returnedList == null) {
 					GWT.log("Host Account no longer exists");
-					
 				} else {
 					// Successful
 					usersToAdd = returnedList;

@@ -6,16 +6,18 @@ public class Post implements Serializable {
 
 	private String postUser;
 	private String postText;
+	private String fromUser;
 	//private Attachment postAttach;
 	
 	public Post(){
 		
 	}
 	
-	public Post(String postUser, String postText) //Attachment postAttach)
+	public Post(String postUser, String postText, String fromuser) //Attachment postAttach)
 	{
 		this.postUser = postUser;
 		this.postText = postText;
+		this.fromUser = fromuser;
 		//this.postAttach = postAttach;
 	}
 	
@@ -37,6 +39,14 @@ public class Post implements Serializable {
 	public String getPostText()
 	{
 		return this.postText;
+	}
+
+	public String getFromUser() {
+		return fromUser;
+	}
+
+	public void setFromUser(String fromUser) {
+		this.fromUser = fromUser;
 	}
 	
 //	public void setPostAttach(Attachment postAttach)

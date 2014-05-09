@@ -18,5 +18,8 @@ public interface IDatabase {
 	public Message addMessage(Message messToAdd, String toUser);
 	public ArrayList<Account> getAccountList();
 	public Event addEvent(Event eventToAdd);
+	public Account addPostToUser(Account userProfileBeingShown, Post post);
+	public ArrayList<Event> getEventsForUser(String email);
 }
+
 

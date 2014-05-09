@@ -5,6 +5,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MenuItemSeparator;
@@ -36,16 +37,18 @@ public class MyYorkSpaceWebApp implements EntryPoint {
 		if (currentView != null) {
 			RootLayoutPanel.get().remove(currentView);
 		}
-
 		RootLayoutPanel.get().add(view);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
-		
+	
 		view.activate();
 		
 		currentView = view;
-		
+	
+		Image image = new Image("myyorkspacewebapp/gwt/clean/images/littlecypicon.png");
+		RootLayoutPanel.get().add(image);
+		image.setSize("100", "100");
+		RootLayoutPanel.get().setWidgetLeftWidth(image, 400.0, Unit.PX, 194.0, Unit.PX);
+		RootLayoutPanel.get().setWidgetTopHeight(image, 0.0, Unit.PX, 144.0, Unit.PX);
 	}
-	
-	
 }

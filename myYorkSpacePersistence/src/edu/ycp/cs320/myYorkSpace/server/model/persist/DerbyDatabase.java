@@ -9,10 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ycp.cs320.booksdb.model.Author;
-import edu.ycp.cs320.booksdb.model.Book;
-import edu.ycp.cs320.booksdb.model.Pair;
 import edu.ycp.cs320.myYorkSpace.shared.Account;
+import edu.ycp.cs320.myYorkSpace.shared.Event;
 import edu.ycp.cs320.myYorkSpace.shared.Message;
 import edu.ycp.cs320.myYorkSpace.shared.Post;
 
@@ -31,33 +29,33 @@ public class DerbyDatabase implements IDatabase {
 
 	private static final int MAX_ATTEMPTS = 10;
 
+	/*
 	@Override
-	public List<Pair<Author, Book>> findAuthorAndBookByTitle(final String title) {
-		return executeTransaction(new Transaction<List<Pair<Author,Book>>>() {
+	public List<Account> findUserByEmail(final String title) {
+		return executeTransaction(new Transaction<List<Account>>() {
 			@Override
-			public List<Pair<Author, Book>> execute(Connection conn) throws SQLException {
+			public List<Account> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 				
 				try {
 					stmt = conn.prepareStatement(
-							"select authors.*, books.* " +
-							"  from authors, books " +
-							" where authors.id = books.author_id " +
+							"select Accounts.*, books.* " +
+							"  from Accounts, books " +
+							" where Accounts.id = books.Account_id " +
 							"   and books.title = ?"
 					);
 					stmt.setString(1, title);
 					
-					List<Pair<Author, Book>> result = new ArrayList<Pair<Author,Book>>();
+					List<Account> result = new ArrayList<Account>();
 					
 					resultSet = stmt.executeQuery();
 					while (resultSet.next()) {
-						Author author = new Author();
-						loadAuthor(author, resultSet, 1);
+						Account Account = new Account();
+						loadAccount(Account, resultSet, 1);
 						Book book = new Book();
 						loadBook(book, resultSet, 4);
 						
-						result.add(new Pair<Author, Book>(author, book));
 					}
 					
 					return result;
@@ -68,6 +66,7 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	*/
 	
 	public<ResultType> ResultType executeTransaction(Transaction<ResultType> txn) {
 		try {
@@ -122,19 +121,13 @@ public class DerbyDatabase implements IDatabase {
 		return conn;
 	}
 	
-	private void loadAuthor(Author author, ResultSet resultSet, int index) throws SQLException {
-		author.setId(resultSet.getInt(index++));
-		author.setLastname(resultSet.getString(index++));
-		author.setFirstname(resultSet.getString(index++));
+	private void loadAccount(Account Account, ResultSet resultSet, int index) throws SQLException {
+		Account.setUserName(resultSet.getString(index++));
+		Account.setEmail(resultSet.getString(index++));
+		Account.setPassword(resultSet.getString(index++));
 	}
 	
-	private void loadBook(Book book, ResultSet resultSet, int index) throws SQLException {
-		book.setId(resultSet.getInt(index++));
-		book.setAuthorId(resultSet.getInt(index++));
-		book.setTitle(resultSet.getString(index++));
-		book.setIsbn(resultSet.getString(index++));
-	}
-	
+
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
@@ -146,14 +139,14 @@ public class DerbyDatabase implements IDatabase {
 					stmt1 = conn.prepareStatement(
 							"create table books (" +
 							"    id integer primary key," +
-							"    author_id integer," +
+							"    Account_id integer," +
 							"    title varchar(50)," +
 							"    isbn varchar(20)" +
 							")");
 					stmt1.executeUpdate();
 					
 					stmt2 = conn.prepareStatement(
-							"create table authors (" +
+							"create table Accounts (" +
 							"    id integer primary key," +
 							"    lastname varchar(40)," +
 							"    firstname varchar(40)" +
@@ -173,43 +166,31 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
-				List<Author> authorList;
-				List<Book> bookList;
+				List<Account> AccountList;
 				
 				try {
-					authorList = InitialData.getAuthors();
-					bookList = InitialData.getBooks();
+					AccountList = InitialData.getAccounts();
+
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
 
-				PreparedStatement insertAuthor = null;
-				PreparedStatement insertBook = null;
+				PreparedStatement insertAccount = null;
 
 				try {
-					insertAuthor = conn.prepareStatement("insert into authors values (?, ?, ?)");
-					for (Author author : authorList) {
-						insertAuthor.setInt(1, author.getId());
-						insertAuthor.setString(2, author.getLastname());
-						insertAuthor.setString(3, author.getFirstname());
-						insertAuthor.addBatch();
+					insertAccount = conn.prepareStatement("insert into Accounts values (?, ?, ?)");
+					for (Account Account : AccountList) {
+						insertAccount.setString(1, Account.getEmail());
+						insertAccount.setString(2, Account.getUserName());
+						insertAccount.setString(3, Account.getPassword());
+						insertAccount.addBatch();
 					}
-					insertAuthor.executeBatch();
+					insertAccount.executeBatch();
 					
-					insertBook = conn.prepareStatement("insert into books values (?, ?, ?, ?)");
-					for (Book book : bookList) {
-						insertBook.setInt(1, book.getId());
-						insertBook.setInt(2, book.getAuthorId());
-						insertBook.setString(3, book.getTitle());
-						insertBook.setString(4, book.getIsbn());
-						insertBook.addBatch();
-					}
-					insertBook.executeBatch();
 					
 					return true;
 				} finally {
-					DBUtil.closeQuietly(insertBook);
-					DBUtil.closeQuietly(insertAuthor);
+					DBUtil.closeQuietly(insertAccount);
 				}
 			}
 		});
@@ -272,11 +253,29 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public Message addMessage(Message messToAdd, String toUser) {
 		// TODO Auto-generated method stub
-		return null;
+		return null; 
 	}
 
 	@Override
 	public ArrayList<Account> getAccountList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Event addEvent(Event eventToAdd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Account addPostToUser(Account userProfileBeingShown, Post post) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsForUser(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}

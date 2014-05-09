@@ -1,6 +1,7 @@
 package edu.ycp.cs320.myYorkSpace.server.model.persist;
 
 import java.util.ArrayList;
+
 import edu.ycp.cs320.myYorkSpace.shared.Account;
 import edu.ycp.cs320.myYorkSpace.shared.Birthday;
 import edu.ycp.cs320.myYorkSpace.shared.Event;
@@ -77,9 +78,9 @@ public class FakeDatabase implements IDatabase {
 		mes.add(message2);
 		
 		ArrayList<Post> p = new ArrayList<Post>();
-		Post p1 = new Post("prof", "Hey everybody!");
-		Post p2 = new Post("prof", "Im hungry!");
-		Post p3 = new Post("prof", "Who's watching this game!");
+		Post p1 = new Post("prof", "Hey everybody!", "sam");
+		Post p2 = new Post("prof", "Im hungry!", "alec");
+		Post p3 = new Post("prof", "Who's watching this game!", "sammy");
 		p.add(p1);
 		p.add(p2);
 		p.add(p3);
@@ -195,5 +196,16 @@ public class FakeDatabase implements IDatabase {
 			findUserByUserName(invited.get(i)).getEvents().add(eventToAdd);
 		}
 		return eventToAdd;
+	}
+
+	@Override
+	public Account addPostToUser(Account userProfileBeingShown, Post post) {	
+		userProfileBeingShown.getPosts().add(post);
+		return userProfileBeingShown;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsForUser(String email) {
+		return findUserByEmail(email).getEvents();
 	}
 }

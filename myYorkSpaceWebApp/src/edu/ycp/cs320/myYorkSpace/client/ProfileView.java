@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -34,11 +35,12 @@ public class ProfileView extends Composite implements View{
 	private ArrayList<Post> userPosts;
 	private Button btnNewButton;
 	private TextArea textArea_1;
+	private Account userProfileBeingShown;
 	
 	public ProfileView(Account userProfileBeingShown) {
 		
 
-		 
+		this.userProfileBeingShown = userProfileBeingShown;
 		Session profile = Session.getInstance();
 		LayoutPanel panel = new LayoutPanel();
 		initWidget(panel);
@@ -132,7 +134,11 @@ public class ProfileView extends Composite implements View{
 
 		for(int i = 0; i < userPosts.size(); i++)
 		{
-			listBox.addItem("from: " + userPosts.get(i).getPostUser());
+			if(userPosts.get(i).getFromUser()!= null){
+				listBox.addItem(userPosts.get(i).getFromUser()+": "+userPosts.get(i).getPostText());
+			}else{
+				listBox.addItem("anonymous: "+ userPosts.get(i).getPostText());
+			}
 		}
 		listBox.addClickHandler(new ClickHandler() {
 			@Override
@@ -158,17 +164,32 @@ public class ProfileView extends Composite implements View{
 			public void onClick(ClickEvent event) {
 				//add rpc to make this store
 				if(textArea_1.getText() != null && textArea_1.getText() != "" ){
-					Post newPost = new Post(Session.getInstance().getAccount().getUserName(), textArea_1.getText());
-					userPosts.add(newPost);
-					listBox.clear();
-					for(int i = 0; i < userPosts.size(); i++)
-					{
-						listBox.addItem("from: " + userPosts.get(i).getPostUser());
-					}
+					addPost(textArea_1.getText());
 				}
 			}
 		});
 	} 
+	
+	
+	protected void addPost(String text) {
+		RPC.ProfileService.addPostToUser(userProfileBeingShown, Session.getInstance().getAccount().getUserName(), text, new AsyncCallback<Account>() {
+			@Override
+			public void onSuccess(Account returned) {
+				if (returned == null) {
+					GWT.log("returned null?");
+				} else {
+					GWT.log("Post Added!");
+					// Successful
+					MyYorkSpaceWebApp.setView(new ProfileView(returned));
+				}
+			}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO: display error msg
+				GWT.log("add event RPC call failed", caught);
+			}
+		});
+	}
 
 	@Override
 	public void activate() {
